@@ -134,4 +134,11 @@ class MiniChess:
 
 if __name__ == "__main__":
     game = MiniChess()
-    game.play()
+    
+
+
+'''
+This is a test to see if i can push it back 
+
+
+'''
