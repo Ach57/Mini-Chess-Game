@@ -134,5 +134,9 @@ class MiniChess:
 
 if __name__ == "__main__":
     game = MiniChess()
+
+'''
+test
+'''
     
 
