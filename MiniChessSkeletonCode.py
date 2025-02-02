@@ -120,11 +120,11 @@ class MiniChess:
         print("Welcome to Mini Chess! Enter moves as 'B2 B3'. Type 'exit' to quit.")
         while True:
             self.display_board(self.current_game_state)
-            move = input(f"{self.current_game_state['turn'].capitalize()} to move: ")
+            move = input(f"{self.current_game_state['turn'].capitalize()} to move: ") # gets input move from the user 
             if move.lower() == 'exit':
                 print("Game exited.")
                 exit(1)
-
+            
             move = self.parse_input(move)
             if not move or not self.is_valid_move(self.current_game_state, move):
                 print("Invalid move. Try again.")
@@ -134,6 +134,8 @@ class MiniChess:
 
 if __name__ == "__main__":
     game = MiniChess()
+    game.play()
+
 
 
 '''
