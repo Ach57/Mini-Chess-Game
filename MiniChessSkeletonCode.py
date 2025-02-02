@@ -136,9 +136,3 @@ if __name__ == "__main__":
     game = MiniChess()
     
 
-
-'''
-This is a test to see if i can push it back 
-
-
-'''
