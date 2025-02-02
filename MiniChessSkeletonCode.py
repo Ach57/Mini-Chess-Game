@@ -135,5 +135,16 @@ class MiniChess:
 if __name__ == "__main__":
     game = MiniChess()
 
+
+'''
+Game Check-list:
+
+game.play() runs the game
+
+
+
+
+
+'''
     
 
