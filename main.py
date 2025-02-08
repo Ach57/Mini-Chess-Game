@@ -2,17 +2,12 @@ import math
 import copy
 import time
 import argparse
-from pieces import king, bishop, queen, pawn, knight
+from pieces.king import king_moves
+from pieces.queen import queen_moves
+from pieces.knight import knight_moves
+from pieces.pawn import  pawn_moves
+from pieces.bishop import bishop_moves
 
-game_map = {
-    'w': 'white',
-    'b': 'black',
-    'Q': 'Queen',
-    'K': 'King',
-    'B':'Bishop',
-    'p':'Pawn',
-    'N': 'Knight'
-}
 
 class MiniChess:
     def __init__(self):
@@ -64,25 +59,27 @@ class MiniChess:
         - boolean representing the validity of the move
     """
     def is_valid_move(self, game_state, move):
-        # Check if move is in list of valid moves
         current_pos, destination = move
-        player = game_state['board'][current_pos[0]][current_pos[1]] # get the position 
-        actual_state = game_state['turn'] # get the state of either white or black
-        if player == '.':
-            return False # No Piece found
+        board = game_state['board']
+        turn = game_state['turn']
         
-        # in this case we deal with either piece of black or white
-        state = game_map[player[0]] # get value from the map
-        if state!=actual_state: 
+        
+        player = board[current_pos[0]][current_pos[1]]
+        
+        if player =='.':
             return False
         
-        piece = game_map[player[1]]  # get the piece type {pawn, king, queen,  Bishop, Knight}
+        if (player[0] =='w' and turn!= 'white') or (player[0]=='b' and turn!='black'):
+            return False
         
-    
+        valid_movements =self.valid_moves(game_state)
+        print((current_pos, destination))
+        print(valid_movements)
         
+        if(current_pos, destination) in valid_movements:
+            return True
         
-        
-        return True
+        return False
 
     """
     Returns a list of valid moves
@@ -100,8 +97,31 @@ class MiniChess:
         turn = game_state['turn']
         valid_moves = []
         
-      
-        return
+        movement_rules = {
+            "K": king_moves,
+            "Q": queen_moves,
+            "B": bishop_moves,
+            "N": knight_moves,
+            "p": pawn_moves
+        }
+        for row in range(5):
+            for col in range(5):
+                piece = board[row][col]
+                if piece==".": continue
+                
+                piece_color = "white" if piece[0] =="w" else "black"
+                piece_type = piece[1]
+                
+                if piece_color == turn:
+                    move_function = movement_rules.get(piece_type, lambda position, game_state: [])
+                    possible_moves = move_function((row, col), game_state)
+                    
+                    for move in possible_moves:
+                        end_row, end_col = move
+                        if 0 <= end_row < 5 and 0 <= end_col < 5:
+                            valid_moves.append(((row, col), (end_row, end_col)))
+                
+        return valid_moves
     
 
     """
@@ -173,3 +193,10 @@ if __name__ == "__main__":
 
     
 
+'''
+Notes:
+
+Everything would be okay except that there is a logic to handle between the movements 
+
+
+'''

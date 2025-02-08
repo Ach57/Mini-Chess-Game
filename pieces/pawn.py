@@ -1,4 +1,4 @@
-def pawn_moves(position, game_state):
+def pawn_moves(position: tuple, game_state: dict) ->list[dict]: 
     """
     Args:
         position (tuple): position of the piece in the board
@@ -10,8 +10,10 @@ def pawn_moves(position, game_state):
     x, y = position
     board = game_state["board"]
     turn = game_state["turn"]
-    direction = 1 if turn == "white" else -1
+    direction = -1 if turn == "white" else 1
     moves = []
+    
+    print(position)
 
     if 0 <= y + direction < 5 and board[y + direction][x] == ".":
         moves.append((x, y + direction))
