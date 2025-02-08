@@ -1,19 +1,21 @@
-class Bishop:
-    def __init__(self, color:str):
-        self.color   = color
-        
+def bishop_moves(position:tuple, game_state: dict)->list[tuple]:
+    """
+    Args:
+        position (tuple): position of the piece in the board
+        game_state (dict): Dictionary containing the board and turn
 
-    def get_possible_moves(self, position: tuple) ->list[tuple]:
-        x, y = position
-        
-        moves = []
-        
-        for i in range(1,5):
-            moves.append((x+1, y+1))
-            moves.append((x+1, y-1))
-            moves.append((x-1, y-1))
-            moves.append((x-1, y+1))
-            
-        return moves
-
-        
+    Returns:
+        list[tuple]: possible moves
+    """
+    
+    x, y = position
+    directions = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
+    moves = []
+    for dx, dy in directions:
+        for step in range(1, 5):  # Move as far as possible
+            new_x, new_y = x + dx * step, y + dy * step
+            if 0 <= new_x < 5 and 0 <= new_y < 5:
+                moves.append((new_x, new_y))
+    return moves
+    
+    

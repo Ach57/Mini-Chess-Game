@@ -1,20 +1,22 @@
-class King:
+def king_moves(position:tuple, game_state:dict)->list[tuple]:
+    """_summary_
+    Returns all possible moves for a King.
+    Args:
+        position (tuple): position of the piece in the board
+        game_state (dict): Dictionary containing the board and turn
+    """
     
-    def __init__(self, color:str):
-        self.color = color 
+    x,  y = position
     
-    def get_possible_moves(self,posiiton :tuple) ->list[tuple]:
-        x,y = posiiton
-        moves = [
-            (x-1, y-1), (x-1, y) , (x-1, y+1),
-            (x, y-1),               (x, y+1), 
-            (x+1, y-1), (x+1, y), (x+1, y+1)
-        
-               ]
-        return moves
-    
+    directions = [(-1, -1), (-1, 0), (-1, 1),
+                  (0, -1),         (0, 1),
+                  (1, -1), (1, 0), (1, 1)]
+    return [(x + dx, y + dy) for dx, dy in directions]
 
-        
+
+    
+    
+    
     
 '''
 (y)

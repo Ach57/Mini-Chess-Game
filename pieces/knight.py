@@ -1,19 +1,15 @@
-class Knight:
-    def __init__(self, color:str):
-        
-        self.color   = color
-        
-    def get_possible_moves(self, position: tuple)->list[tuple]:
-        
-        x,y = position
-        
-        moves = [
-            (x + 2, y + 1), (x + 2, y - 1),
-            (x - 2, y + 1), (x - 2, y - 1),
-            (x + 1, y + 2), (x + 1, y - 2),
-            (x - 1, y + 2), (x - 1, y - 2)
-        ]
-        
-        return moves
-        
-        
+def knight_moves(position:tuple, game_state):
+    """
+    Args:
+        position (tuple): position of the piece in the board
+        game_state (dict): Dictionary containing the board and turn
+
+    Returns:
+        list[tuple]: possible moves
+    """
+    x, y = position
+    moves = [(x + dx, y + dy) for dx, dy in [
+        (2, 1), (2, -1), (-2, 1), (-2, -1),
+        (1, 2), (1, -2), (-1, 2), (-1, -2)
+    ]]
+    return moves

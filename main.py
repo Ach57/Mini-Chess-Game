@@ -68,7 +68,6 @@ class MiniChess:
         current_pos, destination = move
         player = game_state['board'][current_pos[0]][current_pos[1]] # get the position 
         actual_state = game_state['turn'] # get the state of either white or black
-        
         if player == '.':
             return False # No Piece found
         
@@ -77,7 +76,10 @@ class MiniChess:
         if state!=actual_state: 
             return False
         
-        piece = game_map[player[1]]    
+        piece = game_map[player[1]]  # get the piece type {pawn, king, queen,  Bishop, Knight}
+        
+    
+        
         
         
         return True
@@ -94,7 +96,13 @@ class MiniChess:
         # Return a list of all the valid moves.
         # Implement basic move validation
         # Check for out-of-bounds, correct turn, move legality, etc
+        board = game_state['board']
+        turn = game_state['turn']
+        valid_moves = []
+        
+      
         return
+    
 
     """
     Modify to board to make a move
