@@ -7,11 +7,11 @@ class Pawn:
         x,y = position
         
         moves = []
-        moves.append((x, y+1)) if self.color == "white" else moves.append((x, y-1))# moving forward and backward
+        moves.append((x, y-1)) if self.color == "white" else moves.append((x, y+1))# moving forward and backward
         
         # for diagonal moves when capturing something 
-        moves.append((x + 1, y + 1)) if self.color == 'white' else moves.append((x + 1, y - 1))
-        moves.append((x - 1, y + 1)) if self.color == 'white' else moves.append((x - 1, y - 1))
+        moves.append((x - 1, y + 1)) if self.color == 'white' else moves.append((x + 1, y - 1))
+        moves.append((x - 1, y - 1)) if self.color == 'white' else moves.append((x + 1, y - 1))
         
         
         return moves

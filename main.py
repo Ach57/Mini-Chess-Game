@@ -2,6 +2,17 @@ import math
 import copy
 import time
 import argparse
+from pieces import king, bishop, queen, pawn, knight
+
+game_map = {
+    'w': 'white',
+    'b': 'black',
+    'Q': 'Queen',
+    'K': 'King',
+    'B':'Bishop',
+    'p':'Pawn',
+    'N': 'Knight'
+}
 
 class MiniChess:
     def __init__(self):
@@ -54,6 +65,21 @@ class MiniChess:
     """
     def is_valid_move(self, game_state, move):
         # Check if move is in list of valid moves
+        current_pos, destination = move
+        player = game_state['board'][current_pos[0]][current_pos[1]] # get the position 
+        actual_state = game_state['turn'] # get the state of either white or black
+        
+        if player == '.':
+            return False # No Piece found
+        
+        # in this case we deal with either piece of black or white
+        state = game_map[player[0]] # get value from the map
+        if state!=actual_state: 
+            return False
+        
+        piece = game_map[player[1]]    
+        
+        
         return True
 
     """
@@ -124,7 +150,6 @@ class MiniChess:
             if move.lower() == 'exit':
                 print("Game exited.")
                 exit(1)
-            
             move = self.parse_input(move)
             if not move or not self.is_valid_move(self.current_game_state, move):
                 print("Invalid move. Try again.")
