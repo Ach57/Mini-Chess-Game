@@ -5,14 +5,16 @@ import argparse
 from pieces.king import king_moves
 from pieces.queen import queen_moves
 from pieces.knight import knight_moves
-from pieces.pawn import  pawn_moves
+from pieces.pawn import pawn_moves, promote_pawn
 from pieces.bishop import bishop_moves
-
+from mini_chess_logger import MiniChessLogger
 
 class MiniChess:
-    def __init__(self):
+    def __init__(self, alpha_beta=True, timeout=5, max_turns=100):
         self.current_game_state = self.init_board()
-
+        self.logger = MiniChessLogger(alpha_beta, timeout, max_turns)
+        self.turn_count = 0  # Track number of turns for draw condition
+    
     """
     Initialize the board
 
@@ -48,6 +50,7 @@ class MiniChess:
         print()
         print("     A   B   C   D   E")
         print()
+        self.logger.log_board(game_state)
 
     """
     Check if the move is valid    
@@ -63,7 +66,6 @@ class MiniChess:
         board = game_state['board']
         turn = game_state['turn']
         
-        
         player = board[current_pos[0]][current_pos[1]]
         
         if player =='.':
@@ -72,11 +74,11 @@ class MiniChess:
         if (player[0] =='w' and turn!= 'white') or (player[0]=='b' and turn!='black'):
             return False
         
-        valid_movements =self.valid_moves(game_state)
+        valid_movements = self.valid_moves(game_state)
         print((current_pos, destination))
         print(valid_movements)
         
-        if(current_pos, destination) in valid_movements:
+        if (current_pos, destination) in valid_movements:
             return True
         
         return False
@@ -90,9 +92,6 @@ class MiniChess:
         - valid moves:   list | A list of nested tuples corresponding to valid moves [((start_row, start_col),(end_row, end_col)),((start_row, start_col),(end_row, end_col))]
     """
     def valid_moves(self, game_state):
-        # Return a list of all the valid moves.
-        # Implement basic move validation
-        # Check for out-of-bounds, correct turn, move legality, etc
         board = game_state['board']
         turn = game_state['turn']
         valid_moves = []
@@ -107,7 +106,7 @@ class MiniChess:
         for row in range(5):
             for col in range(5):
                 piece = board[row][col]
-                if piece==".": continue
+                if piece == ".": continue
                 
                 piece_color = "white" if piece[0] =="w" else "black"
                 piece_type = piece[1]
@@ -123,9 +122,8 @@ class MiniChess:
                 
         return valid_moves
     
-
     """
-    Modify to board to make a move
+    Modify the board to make a move
 
     Args: 
         - game_state:   dictionary | Dictionary representing the current game state
@@ -139,11 +137,20 @@ class MiniChess:
         start_row, start_col = start
         end_row, end_col = end
         piece = game_state["board"][start_row][start_col]
+    
         game_state["board"][start_row][start_col] = '.'
         game_state["board"][end_row][end_col] = piece
-        game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
 
+        # Check for pawn promotion after the move is made
+        if piece in ["wp", "bp"]:
+            promote_pawn((end_row, end_col), game_state)  
+
+        game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
+        self.turn_count += 1
+
+        self.logger.log_move(game_state["turn"], move)
         return game_state
+
 
     """
     Parse the input string and modify it into board coordinates
@@ -185,9 +192,15 @@ class MiniChess:
 
             self.make_move(self.current_game_state, move)
 
+            if self.turn_count >= 100:
+                print("Game ended due to max turn limit.")
+                self.logger.log_winner("Draw (max turns reached)")
+                break
+
 if __name__ == "__main__":
     game = MiniChess()
     game.play()
+
 
 
 
