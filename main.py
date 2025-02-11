@@ -14,7 +14,7 @@ class MiniChess:
         self.current_game_state = self.init_board()
         self.logger = MiniChessLogger(alpha_beta, timeout, max_turns)
         self.turn_count = 0  # Track number of turns for draw condition
-    
+        self.piece_count_history = []  # Store past counts of pieces
     """
     Initialize the board
 
@@ -123,6 +123,28 @@ class MiniChess:
         return valid_moves
     
     """
+    Counts the total number of pieces on the board.
+
+    Args:
+        - game_state: dictionary | The current state of the game.
+
+    Returns:
+        - int: The total number of non-empty squares on the board, representing the number of active pieces.
+    
+    This function iterates over the board and counts all non-empty squares (i.e., any cell that does not contain '.'). 
+    It is used to track the number of pieces remaining in the game, which is crucial for implementing the draw condition 
+    where no captures have occurred for 10 full turns.
+    """
+    
+    def count_pieces(self, game_state):
+        count = 0
+        for row in game_state["board"]:
+            for cell in row:
+                if cell != ".":
+                    count += 1
+        return count
+    
+    """
     Modify the board to make a move
 
     Args: 
@@ -146,7 +168,22 @@ class MiniChess:
             promote_pawn((end_row, end_col), game_state)  
 
         game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
-        self.turn_count += 1
+        # Update turn count every time black moves (white + black = 1 turn)
+        if game_state["turn"] == "white":
+            self.turn_count += 1
+            piece_count = self.count_pieces(game_state)
+
+            # Store the piece count history
+            if len(self.piece_count_history) == 10:
+                self.piece_count_history.pop(0)  # Keep only the last 10 turns
+            
+            self.piece_count_history.append(piece_count)
+
+            # Check if the number of pieces remained the same for 10 turns
+            if len(self.piece_count_history) == 10 and len(set(self.piece_count_history)) == 1:
+                print("Game ended in a draw due to no captures in 10 turns.")
+                self.logger.log_winner("Draw (no captures in 10 turns)")
+                exit(0)
 
         self.logger.log_move(game_state["turn"], move)
         return game_state
