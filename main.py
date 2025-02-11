@@ -75,8 +75,6 @@ class MiniChess:
             return False
         
         valid_movements = self.valid_moves(game_state)
-        print((current_pos, destination))
-        print(valid_movements)
         
         if (current_pos, destination) in valid_movements:
             return True
@@ -159,13 +157,24 @@ class MiniChess:
         start_row, start_col = start
         end_row, end_col = end
         piece = game_state["board"][start_row][start_col]
-    
+        captured_piece = game_state['board'][end_row][end_col]
+        
         game_state["board"][start_row][start_col] = '.'
         game_state["board"][end_row][end_col] = piece
 
+        # Check if the king is captured:
+        if captured_piece =='wK':
+            print("Black wins! White's King is captured.")
+            self.logger.log_winner('Black Wins! (White\'s king captured)')
+            exit(0)
+        elif captured_piece =='bK':
+            print("White Wins! Black\'s King is captured.")
+            self.logger.log_winner('White Wins! (Black\'s King captured)')
+            exit(0)
         # Check for pawn promotion after the move is made
         if piece in ["wp", "bp"]:
             promote_pawn((end_row, end_col), game_state)  
+        
 
         game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
         # Update turn count every time black moves (white + black = 1 turn)
@@ -242,11 +251,3 @@ if __name__ == "__main__":
 
 
     
-
-'''
-Notes:
-
-Everything would be okay except that there is a logic to handle between the movements 
-
-
-'''
