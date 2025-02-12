@@ -65,9 +65,11 @@ class MiniChess:
         current_pos, destination = move
         board = game_state['board']
         turn = game_state['turn']
-        
-        player = board[current_pos[0]][current_pos[1]]
-        
+        try:
+            player = board[current_pos[0]][current_pos[1]]
+        except IndexError:
+            return False
+            
         if player =='.':
             return False
         
@@ -233,6 +235,7 @@ class MiniChess:
                 exit(1)
             move = self.parse_input(move)
             if not move or not self.is_valid_move(self.current_game_state, move):
+                print('You can\'t make this move!')
                 print("Invalid move. Try again.")
                 continue
 

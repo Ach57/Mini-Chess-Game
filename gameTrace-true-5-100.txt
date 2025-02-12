@@ -10,181 +10,51 @@ bK bQ bB bN .
 . wp wp . .
 . wN wB wQ wK
 
-Turn #1: black moves ((3, 1), (2, 1))
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
 
 bK bQ bB bN .
 . . bp bp .
-. wp . . .
-. . wp . .
-. wN wB wQ wK
-
-Turn #2: white moves ((1, 2), (2, 2))
-
-bK bQ bB bN .
-. . . bp .
-. wp bp . .
-. . wp . .
+. . . . .
+. wp wp . .
 . wN wB wQ wK
 
 bK bQ bB bN .
-. . . bp .
-. wp bp . .
-. . wp . .
+. . bp bp .
+. . . . .
+. wp wp . .
 . wN wB wQ wK
-
-Turn #3: black moves ((4, 4), (3, 4))
 
 bK bQ bB bN .
-. . . bp .
-. wp bp . .
-. . wp . wK
-. wN wB wQ .
-
-Turn #4: white moves ((0, 0), (1, 0))
-
-. bQ bB bN .
-bK . . bp .
-. wp bp . .
-. . wp . wK
-. wN wB wQ .
-
-Turn #5: black moves ((3, 4), (4, 4))
-
-. bQ bB bN .
-bK . . bp .
-. wp bp . .
-. . wp . .
+. . bp bp .
+. . . . .
+. wp wp . .
 . wN wB wQ wK
 
-. bQ bB bN .
-bK . . bp .
-. wp bp . .
-. . wp . .
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
 . wN wB wQ wK
 
-Turn #6: white moves ((1, 0), (2, 0))
-
-. bQ bB bN .
-. . . bp .
-bK wp bp . .
-. . wp . .
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
 . wN wB wQ wK
 
-Turn #7: black moves ((4, 4), (3, 4))
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
 
-. bQ bB bN .
-. . . bp .
-bK wp bp . .
-. . wp . wK
-. wN wB wQ .
-
-Turn #8: white moves ((2, 0), (3, 0))
-
-. bQ bB bN .
-. . . bp .
-. wp bp . .
-bK . wp . wK
-. wN wB wQ .
-
-. bQ bB bN .
-. . . bp .
-. wp bp . .
-bK . wp . wK
-. wN wB wQ .
-
-Turn #9: black moves ((3, 4), (2, 4))
-
-. bQ bB bN .
-. . . bp .
-. wp bp . wK
-bK . wp . .
-. wN wB wQ .
-
-Turn #10: white moves ((0, 1), (1, 2))
-
-. . bB bN .
-. . bQ bp .
-. wp bp . wK
-bK . wp . .
-. wN wB wQ .
-
-Turn #11: black moves ((4, 2), (3, 3))
-
-. . bB bN .
-. . bQ bp .
-. wp bp . wK
-bK . wp wB .
-. wN . wQ .
-
-Turn #12: white moves ((3, 0), (4, 0))
-
-. . bB bN .
-. . bQ bp .
-. wp bp . wK
-. . wp wB .
-bK wN . wQ .
-
-Turn #13: black moves ((2, 1), (1, 1))
-
-. . bB bN .
-. wp bQ bp .
-. . bp . wK
-. . wp wB .
-bK wN . wQ .
-
-Turn #14: white moves ((4, 0), (3, 0))
-
-. . bB bN .
-. wp bQ bp .
-. . bp . wK
-bK . wp wB .
-. wN . wQ .
-
-. . bB bN .
-. wp bQ bp .
-. . bp . wK
-bK . wp wB .
-. wN . wQ .
-
-Turn #15: black moves ((4, 1), (2, 0))
-
-. . bB bN .
-. wp bQ bp .
-wN . bp . wK
-bK . wp wB .
-. . . wQ .
-
-Turn #16: white moves ((3, 0), (3, 1))
-
-. . bB bN .
-. wp bQ bp .
-wN . bp . wK
-. bK wp wB .
-. . . wQ .
-
-Turn #17: black moves ((2, 4), (1, 4))
-
-. . bB bN .
-. wp bQ bp wK
-wN . bp . .
-. bK wp wB .
-. . . wQ .
-
-Turn #18: white moves ((3, 1), (4, 1))
-
-. . bB bN .
-. wp bQ bp wK
-wN . bp . .
-. . wp wB .
-. bK . wQ .
-
-Turn #19: black moves ((2, 0), (0, 1))
-
-. wN bB bN .
-. wp bQ bp wK
-. . bp . .
-. . wp wB .
-. bK . wQ .
-
-Game Over: Draw (no captures in 10 turns) wins in 19 turns
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
 
