@@ -12,3 +12,16 @@ A simplified 5x5 chess game implemented in Python. This game allows two players 
   - Maximum of 100 turns reached.
 - **Pawn Promotion**: Pawns are promoted upon reaching the last rank.
 - **Logging**: Moves, game states, and results are logged.
+
+## File Structure
+
+minichess/
+│── pieces/
+│   ├── king.py
+│   ├── queen.py
+│   ├── bishop.py
+│   ├── knight.py
+│   ├── pawn.py
+│── main.py
+│── mini_chess_logger.py
+│── README.md
