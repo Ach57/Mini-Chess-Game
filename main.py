@@ -65,7 +65,7 @@ class MiniChess:
         current_pos, destination = move
         board = game_state['board']
         turn = game_state['turn']
-        try:
+        try: # For when the player enters a move completely out of the board
             player = board[current_pos[0]][current_pos[1]]
         except IndexError:
             return False
