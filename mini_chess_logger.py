@@ -6,7 +6,7 @@ class MiniChessLogger:
         self.timeout = timeout  # Max time per AI move
         self.max_turns = max_turns  # Max turns allowed in the game
         self.log_file = f"gameTrace-{str(alpha_beta).lower()}-{timeout}-{max_turns}.txt"
-        self.move_count = 0
+        self.move_count = 1
         self.states_explored = 0  # Track number of states explored by AI
         self.depth_exploration = {}  # Track states per depth
         self.start_logging()
@@ -27,8 +27,14 @@ class MiniChessLogger:
                 file.write(' '.join(row) + "\n")
             file.write("\n")
     
-    def log_move(self, player, move, ai_time=None, heuristic_score=None, alpha_beta_score=None):
+    def log_move(self, player, move, ai_time=None, heuristic_score=None, alpha_beta_score=None, valid =False):
         """Log each move taken."""
+        
+        if not valid:
+            with open(self.log_file, 'a') as file:
+                file.write(f'Invalid move made by {player} at turn #{self.move_count}')
+                file.write('\n')
+            return
         self.move_count += 1
         with open(self.log_file, 'a') as file:
             file.write(f"Turn #{self.move_count}: {player} moves {move}\n")
@@ -62,3 +68,5 @@ class MiniChessLogger:
         with open(self.log_file, 'a') as file:
             file.write(f"Game Over: {winner} wins in {self.move_count} turns\n")
             file.write("\n")
+            
+    

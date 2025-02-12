@@ -65,11 +65,11 @@ class MiniChess:
         current_pos, destination = move
         board = game_state['board']
         turn = game_state['turn']
-        try: # For when the player enters a move completely out of the board
+        try: # for when the player enters a move completely out of the board
             player = board[current_pos[0]][current_pos[1]]
         except IndexError:
             return False
-            
+
         if player =='.':
             return False
         
@@ -177,7 +177,7 @@ class MiniChess:
         if piece in ["wp", "bp"]:
             promote_pawn((end_row, end_col), game_state)  
         
-
+        current_game_turn = game_state['turn']
         game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
         # Update turn count every time black moves (white + black = 1 turn)
         if game_state["turn"] == "white":
@@ -196,7 +196,7 @@ class MiniChess:
                 self.logger.log_winner("Draw (no captures in 10 turns)")
                 exit(0)
 
-        self.logger.log_move(game_state["turn"], move)
+        self.logger.log_move(current_game_turn, move, valid=True)
         return game_state
 
 
@@ -235,6 +235,7 @@ class MiniChess:
                 exit(1)
             move = self.parse_input(move)
             if not move or not self.is_valid_move(self.current_game_state, move):
+                self.logger.log_move(self.current_game_state['turn'], move, valid=False)
                 print('You can\'t make this move!')
                 print("Invalid move. Try again.")
                 continue
