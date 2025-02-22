@@ -24,33 +24,48 @@ bK bQ bB bN .
 . wp wp . .
 . wN wB wQ wK
 
-Turn #2: white moves ((3, 1), (2, 1))
+Turn #2: white moves ((4, 2), (2, 4))
 
 bK bQ bB bN .
 . . bp bp .
-. wp . . .
-. . wp . .
-. wN wB wQ wK
+. . . . wB
+. wp wp . .
+. wN . wQ wK
 
-Invalid move made by black at turn #2
+Turn #3: black moves ((1, 3), (2, 4))
+
 bK bQ bB bN .
-. . bp bp .
-. wp . . .
-. . wp . .
-. wN wB wQ wK
-
-Turn #3: black moves ((0, 0), (1, 0))
-
-. bQ bB bN .
-bK . bp bp .
-. wp . . .
-. . wp . .
-. wN wB wQ wK
+. . bp . .
+. . . . bp
+. wp wp . .
+. wN . wQ wK
 
 Invalid move made by white at turn #3
-. bQ bB bN .
-bK . bp bp .
-. wp . . .
-. . wp . .
-. wN wB wQ wK
+bK bQ bB bN .
+. . bp . .
+. . . . bp
+. wp wp . .
+. wN . wQ wK
+
+Invalid move made by white at turn #3
+bK bQ bB bN .
+. . bp . .
+. . . . bp
+. wp wp . .
+. wN . wQ wK
+
+Invalid move made by white at turn #3
+bK bQ bB bN .
+. . bp . .
+. . . . bp
+. wp wp . .
+. wN . wQ wK
+
+Turn #4: white moves ((4, 3), (3, 4))
+
+bK bQ bB bN .
+. . bp . .
+. . . . bp
+. wp wp . wQ
+. wN . . wK
 
