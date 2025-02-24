@@ -1,0 +1,19 @@
+Mini Chess Game Trace
+Alpha-Beta Pruning: OFF
+Timeout per move: 4 seconds
+Max turns: 100
+
+Initial Board Configuration:
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+
+Invalid move made by white at turn #1
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+

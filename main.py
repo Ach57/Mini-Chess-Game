@@ -9,6 +9,162 @@ from pieces.pawn import pawn_moves, promote_pawn
 from pieces.bishop import bishop_moves
 from mini_chess_logger import MiniChessLogger
 
+
+def menu() ->int:
+    print(' -------------------------------')
+    print('|       Mini Game Chess         |')
+    print('| 1. Player Vs Player           |')
+    print('| 2. Player Vs AI               |')
+    print("| 3. AI Vs AI                   |")
+    print("| 4. Exit                       |")
+    print(' -------------------------------')
+    
+    is_correct = False
+    while(not is_correct):
+        try:
+            user_input = int(input("Please entre a valid option: "))
+            if user_input>4 or user_input<1:
+                print('Please entre a value within the correct range\n')
+            else:
+                is_correct = True
+        except ValueError as e:
+            print('incorrect value!\n')
+    
+    if user_input == 4:
+        print('Bye!')
+        exit(0)
+    return user_input
+
+def main(user_input:int):
+    if user_input == 1:
+        print(' -----------------------------------------')
+        print('|            Player Mode Rules             |')
+        print('| Entre The maximum Allow time in Seconds  |')
+        print('| Entre the maximum number of turns        |')
+        print(' -----------------------------------------')
+        
+        is_correct = False
+        while(not is_correct):
+            try:
+                max_time = int(input("Max time in Seconds: "))
+                if max_time<0:
+                    print('Lets keep it postive, shall we?\n')
+                elif max_time>15:
+                    print('Wohoo that\'t alot of time to think. Shrink it bit\n')
+                else:
+                    is_correct = True
+            except ValueError:
+                print('Not a number :(\n')
+        
+        is_correct = False
+        while(not is_correct):
+            try:
+                max_turn = int(input("Max turn in Seconds: "))
+                if max_turn<0:
+                    print('Lets keep it postive, shall we?\n')
+                else:
+                    is_correct = True
+            except ValueError:
+                print('Not a number :(\n')
+        
+        game = MiniChess( alpha_beta=False, timeout=max_time, max_turns=max_turn)
+        game.play()
+        
+    elif user_input == 2:
+        print(' -----------------------------------------')
+        print('|         Player Vs Ai Mode Rules          |')
+        print('| Entre The maximum Allow time in Seconds  |')
+        print('| Entre the maximum number of turns        |')
+        print('| Activate alpha_beta? Yes/No              |')
+        print(' -----------------------------------------')
+        
+        is_correct = False
+        while(not is_correct):
+            try:
+                max_time = int(input("Max time in Seconds: "))
+                if max_time<0:
+                    print('Lets keep it postive, shall we?\n')
+                elif max_time>15:
+                    print('Wohoo that\'t alot of time to think. Shrink it bit\n')
+                else:
+                    is_correct = True
+            except ValueError:
+                print('Not a number :(\n')
+        
+        is_correct = False
+        while(not is_correct):
+            try:
+                max_turn = int(input("Max turn in Seconds: "))
+                if max_turn<0:
+                    print('Lets keep it postive, shall we?\n')
+                else:
+                    is_correct = True
+            except ValueError:
+                print('Not a number :(\n')
+        
+        is_correct = False
+        while(not is_correct):
+            alpha_beta = str(input("Alpha beta: "))
+            if alpha_beta.lower() == 'yes':
+                alpha_beta = True
+                is_correct = True
+            elif alpha_beta.lower() == 'no':
+                alpha_beta = False
+                is_correct =True
+            else:
+                print('Incorrect Value\n')
+                
+    elif user_input ==3:
+        print(' -----------------------------------------')
+        print('|           Ai Vs Ai Mode Rules            |')
+        print('| Entre The maximum Allow time in Seconds  |')
+        print('| Entre the maximum number of turns        |')
+        print('| Activate alpha_beta? Yes/No              |')
+        print(' -----------------------------------------')
+        
+        is_correct = False
+        while(not is_correct):
+            try:
+                max_time = int(input("Max time in Seconds: "))
+                if max_time<0:
+                    print('Lets keep it postive, shall we?\n')
+                elif max_time>15:
+                    print('Wohoo that\'t alot of time to think. Shrink it bit\n')
+                else:
+                    is_correct = True
+            except ValueError:
+                print('Not a number :(\n')
+        
+        is_correct = False
+        while(not is_correct):
+            try:
+                max_turn = int(input("Max turn in Seconds: "))
+                if max_turn<0:
+                    print('Lets keep it postive, shall we?\n')
+                else:
+                    is_correct = True
+            except ValueError:
+                print('Not a number :(\n')
+        
+        is_correct = False
+        while(not is_correct):
+            alpha_beta = str(input("Alpha beta: "))
+            if alpha_beta.lower() == 'yes':
+                alpha_beta = True
+                is_correct = True
+            elif alpha_beta.lower() == 'no':
+                alpha_beta = False
+                is_correct =True
+            else:
+                print('Incorrect Value\n')
+              
+        
+    
+    
+    
+    
+    
+    
 class MiniChess:
     def __init__(self, alpha_beta=True, timeout=5, max_turns=100):
         self.current_game_state = self.init_board()
@@ -248,8 +404,7 @@ class MiniChess:
                 break
 
 if __name__ == "__main__":
-    game = MiniChess()
-    game.play()
+    main(menu())
 
 
 
