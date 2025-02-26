@@ -8,7 +8,7 @@ from pieces.queen import queen_moves
 from pieces.knight import knight_moves
 from pieces.pawn import pawn_moves, promote_pawn
 from pieces.bishop import bishop_moves
-from mini_chess_logger import MiniChessLogger
+from Logger.mini_chess_logger import MiniChessLogger
 
 
 def menu() ->int:
