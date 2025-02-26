@@ -1,5 +1,3 @@
-import time
-
 class MiniChessLogger:
     def __init__(self, alpha_beta, timeout, max_turns):
         self.alpha_beta = alpha_beta  # Boolean for Alpha-Beta pruning

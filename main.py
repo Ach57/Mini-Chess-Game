@@ -1,7 +1,8 @@
 import math
 import copy
 import time
-import argparse
+import sys
+import threading
 from pieces.king import king_moves
 from pieces.queen import queen_moves
 from pieces.knight import knight_moves
@@ -158,19 +159,14 @@ def main(user_input:int):
             else:
                 print('Incorrect Value\n')
               
-        
-    
-    
-    
-    
-    
-    
 class MiniChess:
     def __init__(self, alpha_beta=True, timeout=5, max_turns=100):
         self.current_game_state = self.init_board()
         self.logger = MiniChessLogger(alpha_beta, timeout, max_turns)
         self.turn_count = 0  # Track number of turns for draw condition
         self.piece_count_history = []  # Store past counts of pieces
+        self.max_turns = max_turns
+        self.timeout = timeout
     """
     Initialize the board
 
@@ -373,6 +369,17 @@ class MiniChess:
         except:
             return None
 
+    def countdown(self):
+        for i in range(self.timeout, 0, -1):
+            sys.stdout.write(f"\rTime left: {i} seconds")
+            sys.stdout.flush()
+            time.sleep(1)
+        sys.stdout.write("\r" + " " * 30 + "\rTime's up!")
+        sys.stdout.flush()
+        self.time_up = True
+        return
+    
+    
     """
     Game loop
 
@@ -384,21 +391,29 @@ class MiniChess:
     def play(self):
         print("Welcome to Mini Chess! Enter moves as 'B2 B3'. Type 'exit' to quit.")
         while True:
-            self.display_board(self.current_game_state)
-            move = input(f"{self.current_game_state['turn'].capitalize()} to move: ") # gets input move from the user 
-            if move.lower() == 'exit':
+            self.display_board(self.current_game_state) # Show the board
+        
+            move = input(f"{self.current_game_state['turn'].capitalize()} to move: ") # gets input move from the user     
+            
+            if move.lower() == 'exit': # Exit the game upon request
                 print("Game exited.")
                 exit(1)
-            move = self.parse_input(move)
+            
+            move = self.parse_input(move) # parse input 
+            
             if not move or not self.is_valid_move(self.current_game_state, move):
+                
                 self.logger.log_move(self.current_game_state['turn'], move, valid=False)
+                
                 print('You can\'t make this move!')
+                
                 print("Invalid move. Try again.")
+                
                 continue
 
             self.make_move(self.current_game_state, move)
 
-            if self.turn_count >= 100:
+            if self.turn_count > self.max_turns: ## Check if the number of turns excceeded the maximum number of turns 
                 print("Game ended due to max turn limit.")
                 self.logger.log_winner("Draw (max turns reached)")
                 break
