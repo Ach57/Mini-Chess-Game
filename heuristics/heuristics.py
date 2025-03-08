@@ -1,3 +1,4 @@
+
 def get_pieces_count(game_state: dict) ->dict:
     """_summary_
     Returns the number of pieces in a dictionary 
@@ -78,29 +79,37 @@ def e1(pieces_count: dict, game_state:dict) ->int:
         int: _description_
     """
     position_bonus = { # Requires adjustment
-    'p': {  # Pawn positions
-        'black': [(1, 2), (1, 3)],  
-        'white': [(3, 0), (3, 1), (3, 2)],  
-    },
-    'B': {  # Bishop positions
-        'black': [(0, 2)],  
-        'white': [(4, 1)],  
-    },
-    'N': {  # Knight positions
-        'black': [(0, 3)],  
-        'white': [(4, 0)],  
-    },
-    'Q': {  # Queen positions
-        'black': [(0, 1)],  
-        'white': [(4, 2)],  
-    },
-    'K': {  # King positions
-        'black': [(0, 0)],  
-        'white': [(4, 4)],  
-    },
-}
+        'p': {  # Pawn positions based on them about to be promoted to Queen
+            'black': [(3, 0), (3, 1), (3, 2), (3, 3), (3, 4)],  
+            'white': [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4)],  
+        },
+        'B': {  # Bishop positions
+            'black': [(1, 1), (1, 3)],  
+            'white': [(3, 1), (3, 3)], 
+        },
+        'N': {  # Knight positions
+            'black': [(1, 2), (2, 2), (3, 2)],  
+            'white': [(1, 2), (2, 2), (3, 2)], 
+        },
+        'Q': {  # Queen positions
+        'black': [(2, 2)],  
+            'white': [(2, 2)],   
+        },
+        'K': {  # King positions
+            'black': [(0, 0), (0, 4)],  
+            'white': [(4, 0), (4, 4)],
+        },
+    }
     
-    def calculate_position_bonus(piece:str, color:str, game_state:dict) ->int:
+    bonus_point_distribution = {
+        'p': 10, # when the pawn is about to be promoted to queen
+        'B': 3,
+        "N": 3,
+        "Q":5,
+        "K": 5
+    }
+    
+    def calculate_position_bonus(piece:str,color: str ,game_state:dict) ->int:
         """_summary_
         addes bonus points based on where each piece exists on the board
         Args:
@@ -109,28 +118,109 @@ def e1(pieces_count: dict, game_state:dict) ->int:
             game_state (dict): dictionary
 
         Returns:
-            int: 1|0
+            int: bonus_point_distribution
         """
         
         bonus = 0
         board = game_state['board']
-        favorable_position = position_bonus.get(piece, {}).get(color, [])
         
+        favorable_position = position_bonus.get(piece, {}).get(color, [])
+
         for row, col in favorable_position:
             piece_at_position = board[row][col]
-            if piece_at_position[0] == piece:
-                bonus+=1
-        
+            if piece_at_position == ".":
+                continue
+            if piece_at_position[0] == color[0] and piece_at_position[1] == piece:
+                if piece_at_position[0] =="w":
+                    bonus+= bonus_point_distribution[piece]
+                else:
+                    bonus -= bonus_point_distribution[piece]
         return bonus
         
     score = e0(pieces_count)    
-    
+    white_position_score = 0
+    black_position_score = 0
     for piece in ['p','B','N','Q','K']:
-        for color in ['black','white']:
-            position_score = calculate_position_bonus(piece, color, game_state)
-            score+= position_score
+        white_position_score += calculate_position_bonus(piece = piece, color='white', game_state = game_state)
+        black_position_score += calculate_position_bonus(piece=piece, color='black', game_state=game_state)
     
-    return score
+    return score + white_position_score+ black_position_score
+
+
+def e2(piece_count: dict, game_state: dict ) ->int:
+    """_summary_
+
+    Args:
+        piece_count (dict): use e0 to get the piece count
+        game_state (dict): games state {board, turn}
+
+    Returns:
+        int: heuristic value
+    """
+    piece_values = {
+        'p': 1,    # Pawn value
+        'B': 3,    # Bishop value
+        'N': 3,    # Knight value
+        'Q': 9,    # Queen value
+        'K': 999   # King value
+    }
+    
+    board = game_state['board']
+    
+    def get_caturing_pos_pawn(position:tuple):
+        moves = []
+        row, col = position
+        direction = -1 if game_state['turn'] == "white" else -1
+        for dc in [-1,1]:
+            if 0 <= col + dc < 5 and 0 <= row + direction < 5:
+                target_piece = board[row+ direction][col+ dc]
+                if target_piece!="." and target_piece[0] !=game_state['turn'][0]:
+                    moves.append((row+direction, col+dc)) 
+        return moves
+    
+    def get_capturing_pos_bishop(position: tuple):
+        moves = []
+        x, y = position
+        directions = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
+        rows, cols = len(board), len(board[0])
+    
+        for dx, dy in directions:
+            for step in range(1, 5):  # Move as far as possible
+                new_x, new_y = x + dx * step, y + dy * step
+                if 0 <= new_x < rows and 0 <= new_y < cols:
+                    target_piece = board[new_x][new_y]
+                    if target_piece!= '.' and target_piece[0]!=game_state['turn'][0]:
+                        moves.append((new_x, new_y))
+        return moves
+        
+        
+    def get_caputirng_pos_knight(postion: tuple):
+        moves = []
+        directions = [(2, 1), (2, -1), (-2, 1), (-2, -1),
+                  (1, 2), (1, -2), (-1, 2), (-1, -2)]
+    
+        rows, cols = len(board), len(board[0])
+        row, col = postion
+        for dx, dy in directions:
+            new_x, new_y = row + dx, col+ dy
+            if 0 <= new_x < rows and 0 <= new_y < cols:
+                target_piece = board[new_x][new_y]
+                if target_piece!='.' and target_piece[0] != game_state['turn'][0]:
+                    moves.append((new_x,new_y))
+    
+    
+    def get_caputring_pos_queen():
+        return
+    
+    def get_capturing_pos_king():
+        return
+    
+    for row in range(len(board)):
+        for col in range(len(board[row])):
+            print()
+                
+                
+    
 
 
 if __name__=="__main__":
@@ -138,16 +228,19 @@ if __name__=="__main__":
                 "board": 
                 [['bK', 'bQ', 'bB', 'bN', '.'],
                 ['.', '.', 'bp', 'bp', '.'],
-                ['', '.', '.', '.', '.'],
+                ['.', '.', '.', '.', '.'],
                 ['.', 'wp', 'wp', '.', '.'],
                 ['.', 'wN', 'wB', 'wQ', 'wK']],
                 "turn": 'white',
-                }
+    }
     
-    #print(e0(get_pieces_count(game_state)))
     
-    #print(e1(get_pieces_count(game_state), game_state))
-    print(game_state['board'][0][2])
+    print(e0(get_pieces_count(game_state)))
+    
+    print(e1(get_pieces_count(game_state), game_state))
+    
+    #print(get_pieces_count(game_state))
+    
     
     
     
