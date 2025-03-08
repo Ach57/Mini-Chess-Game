@@ -157,28 +157,28 @@ def e2(piece_count: dict, game_state: dict ) ->int:
     Returns:
         int: heuristic value
     """
-    piece_values = {
+    piece_capture_point = {
         'p': 1,    # Pawn value
         'B': 3,    # Bishop value
         'N': 3,    # Knight value
         'Q': 9,    # Queen value
-        'K': 999   # King value
+        'K': 12   # King value
     }
     
     board = game_state['board']
     
-    def get_caturing_pos_pawn(position:tuple):
+    def get_caturing_pos_pawn(position:tuple, turn: str):
         moves = []
         row, col = position
-        direction = -1 if game_state['turn'] == "white" else -1
+        direction = -1 if turn == "w" else 1
         for dc in [-1,1]:
             if 0 <= col + dc < 5 and 0 <= row + direction < 5:
                 target_piece = board[row+ direction][col+ dc]
-                if target_piece!="." and target_piece[0] !=game_state['turn'][0]:
+                if target_piece!="." and target_piece[0] !=turn:
                     moves.append((row+direction, col+dc)) 
         return moves
     
-    def get_capturing_pos_bishop(position: tuple):
+    def get_capturing_pos_bishop(position: tuple, turn:str):
         moves = []
         x, y = position
         directions = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
@@ -189,12 +189,12 @@ def e2(piece_count: dict, game_state: dict ) ->int:
                 new_x, new_y = x + dx * step, y + dy * step
                 if 0 <= new_x < rows and 0 <= new_y < cols:
                     target_piece = board[new_x][new_y]
-                    if target_piece!= '.' and target_piece[0]!=game_state['turn'][0]:
+                    if target_piece!= '.' and target_piece[0]!=turn:
                         moves.append((new_x, new_y))
         return moves
         
         
-    def get_caputirng_pos_knight(postion: tuple):
+    def get_capturing_pos_knight(postion: tuple, turn: str):
         moves = []
         directions = [(2, 1), (2, -1), (-2, 1), (-2, -1),
                   (1, 2), (1, -2), (-1, 2), (-1, -2)]
@@ -205,19 +205,85 @@ def e2(piece_count: dict, game_state: dict ) ->int:
             new_x, new_y = row + dx, col+ dy
             if 0 <= new_x < rows and 0 <= new_y < cols:
                 target_piece = board[new_x][new_y]
-                if target_piece!='.' and target_piece[0] != game_state['turn'][0]:
+                if target_piece!='.' and target_piece[0] != turn:
                     moves.append((new_x,new_y))
+                    
+        return moves
     
+    def get_capturing_pos_queen( position : tuple, turn: str):
+        moves =  []
+        row, col = position
+        directions = [(-1, -1), (-1, 0), (-1, 1),
+                  (0, -1),         (0, 1),
+                  (1, -1), (1, 0), (1, 1)]
+        
+        for dx, dy in directions:
+            for step in range(1, 5):  # Move as far as possible
+                new_x, new_y = row + dx * step, col + dy * step
+                if 0 <= new_x < 5 and 0 <= new_y < 5:
+                    target_piece = board[new_x][new_y]
+                    if target_piece!='.' and target_piece[0]!= turn:
+                        moves.append((new_x, new_y)) 
+        return moves
     
-    def get_caputring_pos_queen():
-        return
+    def get_capturing_pos_king(position: tuple, turn: str):
+        row, col = position
+        moves = []
+        rows, cols = len(board), len(board[0])
+        directions = [(-1, -1), (-1, 0), (-1, 1),
+                  (0, -1),         (0, 1),
+                  (1, -1), (1, 0), (1, 1)]
+        for dx, dy in directions:
+            new_x, new_y = dx + row, dy+ col
+            if 0 <= new_x < rows and 0 <= new_y < cols:
+                target_piece = board[new_x][new_y]
+                if target_piece!='.' and target_piece[0] !=turn:
+                    moves.append((new_x, new_y))
+        return moves
     
-    def get_capturing_pos_king():
-        return
-    
+    score =e0(piece_count)
+    points = 0 
+
     for row in range(len(board)):
         for col in range(len(board[row])):
-            print()
+            piece = board[row][col]
+            if piece =='.':
+                continue
+            if piece[1] =="p":
+                moves = get_caturing_pos_pawn(position=(row, col), turn= piece[0])
+                if moves:
+                    for x, y in moves:
+                        capturing_piece = board[x][y]
+                        points +=  piece_capture_point[capturing_piece[1]] if capturing_piece[0] =="b" else (-1) * piece_capture_point[capturing_piece[1]]
+            
+            elif piece[1] == "B":
+                moves = get_capturing_pos_bishop(position=(row, col), turn= piece[1])
+                if moves:
+                    for x, y in moves:
+                        capturing_piece = board[x][y]
+                        points+= piece_capture_point[capturing_piece[1]] if capturing_piece[0] =="b" else (-1) * piece_capture_point[capturing_piece[1]]
+            elif piece[1] =="N":
+                moves = get_capturing_pos_knight(postion=(row, col), turn = piece[1])
+                if moves:
+                    for x, y in moves:
+                        capturing_piece = board[x][y]
+                        points += piece_capture_point[capturing_piece[1]] if capturing_piece[0] =="b" else (-1) * piece_capture_point[capturing_piece[1]]
+            elif piece[1] =="Q":
+                moves = get_capturing_pos_queen(position=(row, col), turn = piece[1])
+                if moves:
+                    for x, y in moves:
+                        capturing_piece = board[x][y]
+                        points += piece_capture_point[capturing_piece[1]] if capturing_piece[0] =="b" else (-1)*piece_capture_point[capturing_piece[1]]
+            elif piece[1] =="K":
+                moves = get_capturing_pos_king(position=(row, col), turn= piece[1])
+                if moves:
+                    for x, y in moves:
+                        capturing_piece = board[x][y]
+                        points+= piece_capture_point[capturing_piece[1]] if capturing_piece[0] =="b" else (-1)* piece_capture_point[capturing_piece[1]]
+                        
+    score+= points
+
+    return score                
                 
                 
     
@@ -227,19 +293,19 @@ if __name__=="__main__":
     game_state = {
                 "board": 
                 [['bK', 'bQ', 'bB', 'bN', '.'],
-                ['.', '.', 'bp', 'bp', '.'],
-                ['.', '.', '.', '.', '.'],
-                ['.', 'wp', 'wp', '.', '.'],
+                ['.', '.', 'bp', '.', '.'],
+                ['.', 'wp', '.', '.', '.'],
+                ['.', '.', 'wp', 'bp', '.'],
                 ['.', 'wN', 'wB', 'wQ', 'wK']],
                 "turn": 'white',
     }
     
     
-    print(e0(get_pieces_count(game_state)))
+    #print(e0(get_pieces_count(game_state)))
     
-    print(e1(get_pieces_count(game_state), game_state))
+    #print(e1(get_pieces_count(game_state), game_state))
     
-    #print(get_pieces_count(game_state))
+    print(e2(get_pieces_count(game_state), game_state))
     
     
     
