@@ -460,17 +460,17 @@ class MiniChess:
 
 
     def player_vs_Ai_play(self, heuristic):
-        
+        print("Welcome to Mini Chess! Enter moves as 'B2 B3'. Type 'exit' to quit.")
         return
     
     def Ai_vs_player_play(self, heuristic):
-        
+        print("Welcome to Mini Chess! Enter moves as 'B2 B3'. Type 'exit' to quit.")
         
         return
     
     
     def Ai_vs_Ai_play(self, heuristic):
-        
+        print("Welcome to Mini Chess! Enter moves as 'B2 B3'. Type 'exit' to quit.")
         return
         
     def minimax(self, depth, alpha, beta, maximizing_player):
