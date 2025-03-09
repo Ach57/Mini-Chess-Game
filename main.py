@@ -84,7 +84,7 @@ def main(user_input:int):
         is_correct = False
         while(not is_correct):
             try:
-                max_turn = int(input("Max turn in Seconds: "))
+                max_turn = int(input("Max turn: "))
                 if max_turn<0:
                     print('Lets keep it postive, shall we?\n')
                 else:
@@ -136,7 +136,7 @@ def main(user_input:int):
         is_correct = False
         while(not is_correct):
             try:
-                max_turn = int(input("Max turn in Seconds: "))
+                max_turn = int(input("Max turn: "))
                 if max_turn<0:
                     print('Lets keep it postive, shall we?\n')
                 else:
@@ -188,7 +188,7 @@ def main(user_input:int):
         is_correct = False
         while(not is_correct):
             try:
-                max_turn = int(input("Max turn in Seconds: "))
+                max_turn = int(input("Max turn: "))
                 if max_turn<0:
                     print('Lets keep it postive, shall we?\n')
                 else:
@@ -425,17 +425,6 @@ class MiniChess:
             return (start, end)
         except:
             return None
-
-    def countdown(self):
-        for i in range(self.timeout, 0, -1):
-            sys.stdout.write(f"\rTime left: {i} seconds")
-            sys.stdout.flush()
-            time.sleep(1)
-        sys.stdout.write("\r" + " " * 30 + "\rTime's up!")
-        sys.stdout.flush()
-        self.time_up = True
-        return
-    
     
     """
     Game loop
@@ -471,6 +460,11 @@ class MiniChess:
 
 
     def player_vs_Ai_play(self, heuristic):
+        
+        return
+    
+    def Ai_vs_player_play(self, heuristic):
+        
         
         return
     
@@ -518,9 +512,7 @@ class MiniChess:
                 if beta <= alpha:
                     break  # Prune the search
             return min_eval, best_move
-
-    
-    
+        
     def is_game_over(self):
         """Check if a King has been captured."""
         board = self.current_game_state["board"]
