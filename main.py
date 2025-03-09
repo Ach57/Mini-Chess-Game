@@ -9,29 +9,30 @@ from pieces.knight import knight_moves
 from pieces.pawn import pawn_moves, promote_pawn
 from pieces.bishop import bishop_moves
 from Logger.mini_chess_logger import MiniChessLogger
-from heuristics import get_pieces_count, e0, e1  # Import heuristics
+from heuristics.heuristics import get_pieces_count, e0, e1  # Import heuristics
 
 def menu() ->int:
     print(' -------------------------------')
     print('|       Mini Game Chess         |')
     print('| 1. Player Vs Player           |')
     print('| 2. Player Vs AI               |')
-    print("| 3. AI Vs AI                   |")
-    print("| 4. Exit                       |")
+    print('| 3. Player Vs AI               |')
+    print("| 4. AI Vs AI                   |")
+    print("| 5. Exit                       |")
     print(' -------------------------------')
     
     is_correct = False
     while(not is_correct):
         try:
             user_input = int(input("Please entre a valid option: "))
-            if user_input>4 or user_input<1:
+            if user_input>5 or user_input<1:
                 print('Please entre a value within the correct range\n')
             else:
                 is_correct = True
         except ValueError as e:
             print('incorrect value!\n')
     
-    if user_input == 4:
+    if user_input == 5:
         print('Bye!')
         exit(0)
     return user_input
@@ -40,27 +41,13 @@ def main(user_input:int):
     if user_input == 1:
         print(' -----------------------------------------')
         print('|            Player Mode Rules             |')
-        print('| Entre The maximum Allow time in Seconds  |')
         print('| Entre the maximum number of turns        |')
         print(' -----------------------------------------')
         
         is_correct = False
         while(not is_correct):
             try:
-                max_time = int(input("Max time in Seconds: "))
-                if max_time<0:
-                    print('Lets keep it postive, shall we?\n')
-                elif max_time>15:
-                    print('Wohoo that\'t alot of time to think. Shrink it bit\n')
-                else:
-                    is_correct = True
-            except ValueError:
-                print('Not a number :(\n')
-        
-        is_correct = False
-        while(not is_correct):
-            try:
-                max_turn = int(input("Max turn in Seconds: "))
+                max_turn = int(input("Max turn: "))
                 if max_turn<0:
                     print('Lets keep it postive, shall we?\n')
                 else:
@@ -68,14 +55,16 @@ def main(user_input:int):
             except ValueError:
                 print('Not a number :(\n')
         
-        game = MiniChess( alpha_beta=False, timeout=max_time, max_turns=max_turn)
-        game.play()
+        # Start the game player vs Player
+        game = MiniChess( alpha_beta=False, timeout=float("inf"), max_turns=max_turn)
+        game.player_vs_player_play()
         
     elif user_input == 2:
         print(' -----------------------------------------')
-        print('|         Player Vs Ai Mode Rules          |')
+        print('|         Player Vs AI Mode Rules          |')
         print('| Entre The maximum Allow time in Seconds  |')
         print('| Entre the maximum number of turns        |')
+        print('| Define the heuristic: e0, e1, e2         |')
         print('| Activate alpha_beta? Yes/No              |')
         print(' -----------------------------------------')
         
@@ -102,24 +91,32 @@ def main(user_input:int):
                     is_correct = True
             except ValueError:
                 print('Not a number :(\n')
+                
+        is_correct = False
+        while( not is_correct):
+            heuristic = str(input("Heursitic: "))
+            if heuristic.lower() not in ['e0', 'e1','e2']:
+                print("You have to entre a value within [e0, e1, e2 ]")
+            else:
+                is_correct= True
         
         is_correct = False
         while(not is_correct):
             alpha_beta = str(input("Alpha beta: "))
-            if alpha_beta.lower() == 'yes':
+            if alpha_beta.lower() == 'yes' or alpha_beta.lower() =="y":
                 alpha_beta = True
                 is_correct = True
-            elif alpha_beta.lower() == 'no':
+            elif alpha_beta.lower() == 'no' or alpha_beta.lower() =="n":
                 alpha_beta = False
                 is_correct =True
             else:
                 print('Incorrect Value\n')
-                
-    elif user_input ==3:
+    elif user_input == 3:
         print(' -----------------------------------------')
-        print('|           Ai Vs Ai Mode Rules            |')
+        print('|         AI Vs Player Mode Rules          |')
         print('| Entre The maximum Allow time in Seconds  |')
         print('| Entre the maximum number of turns        |')
+        print('| Define the heuristic: e0, e1, e2         |')
         print('| Activate alpha_beta? Yes/No              |')
         print(' -----------------------------------------')
         
@@ -148,12 +145,72 @@ def main(user_input:int):
                 print('Not a number :(\n')
         
         is_correct = False
+        while( not is_correct):
+            heuristic = str(input("Heursitic: "))
+            if heuristic.lower() not in ['e0', 'e1','e2']:
+                print("You have to entre a value within [e0, e1, e2 ]")
+            else:
+                is_correct= True
+        is_correct = False
         while(not is_correct):
             alpha_beta = str(input("Alpha beta: "))
-            if alpha_beta.lower() == 'yes':
+            if alpha_beta.lower() == 'yes' or alpha_beta.lower()=='y':
                 alpha_beta = True
                 is_correct = True
-            elif alpha_beta.lower() == 'no':
+            elif alpha_beta.lower() == 'no' or  alpha_beta.lower() =="n":
+                alpha_beta = False
+                is_correct =True
+            else:
+                print('Incorrect Value\n')
+        
+    elif user_input ==4:
+        print(' -----------------------------------------')
+        print('|           AI Vs AI Mode Rules            |')
+        print('| Entre The maximum Allow time in Seconds  |')
+        print('| Entre the maximum number of turns        |')
+        print('| Define the heuristic: e0, e1, e2         |')
+        print('| Activate alpha_beta? Yes/No              |')
+        print(' -----------------------------------------')
+        
+        is_correct = False
+        while(not is_correct):
+            try:
+                max_time = int(input("Max time in Seconds: "))
+                if max_time<0:
+                    print('Lets keep it postive, shall we?\n')
+                elif max_time>15:
+                    print('Wohoo that\'t alot of time to think. Shrink it bit\n')
+                else:
+                    is_correct = True
+            except ValueError:
+                print('Not a number :(\n')
+        
+        is_correct = False
+        while(not is_correct):
+            try:
+                max_turn = int(input("Max turn in Seconds: "))
+                if max_turn<0:
+                    print('Lets keep it postive, shall we?\n')
+                else:
+                    is_correct = True
+            except ValueError:
+                print('Not a number :(\n')
+        
+        is_correct = False
+        while( not is_correct):
+            heuristic = str(input("Heursitic: "))
+            if heuristic.lower() not in ['e0', 'e1','e2']:
+                print("You have to entre a value within [e0, e1, e2 ]")
+            else:
+                is_correct= True
+                
+        is_correct = False
+        while(not is_correct):
+            alpha_beta = str(input("Alpha beta: "))
+            if alpha_beta.lower() == 'yes' or alpha_beta.lower() =="y":
+                alpha_beta = True
+                is_correct = True
+            elif alpha_beta.lower() == 'no' or alpha_beta.lower() =="n":
                 alpha_beta = False
                 is_correct =True
             else:
@@ -382,29 +439,17 @@ class MiniChess:
     
     """
     Game loop
-
+    Player vs Player
     Args:
         - None
     Returns:
         - None
     """
-    def play(self):
+    def player_vs_player_play(self):
         print("Welcome to Mini Chess! Enter moves as 'B2 B3'. Type 'exit' to quit.")
         while True:
-            self.display_board(self.current_game_state) # Show the board
-
-             # AI Turn
-            if (self.current_game_state['turn'] == "white" and self.ai_heuristic) or (
-                self.current_game_state['turn'] == "black" and self.ai_heuristic):
-                print(f"AI ({self.current_game_state['turn']}) is thinking...")
-                _, best_move = self.minimax(self.ai_depth, float('-inf'), float('inf'), self.current_game_state['turn'] == "white")
-                if best_move:
-                    print(f"AI moves: {best_move}")
-                    self.make_move(best_move)
-                continue
-            # Human
+            self.display_board(self.current_game_state) # Show the board    
             move = input(f"{self.current_game_state['turn'].capitalize()} to move: ") # gets input move from the user     
-            
             if move.lower() == 'exit': # Exit the game upon request
                 print("Game exited.")
                 exit(1)
@@ -412,13 +457,9 @@ class MiniChess:
             move = self.parse_input(move) # parse input 
             
             if not move or not self.is_valid_move(self.current_game_state, move):
-                
                 self.logger.log_move(self.current_game_state['turn'], move, valid=False)
-                
                 print('You can\'t make this move!')
-                
                 print("Invalid move. Try again.")
-                
                 continue
 
             self.make_move(self.current_game_state, move)
@@ -426,9 +467,18 @@ class MiniChess:
             if self.turn_count > self.max_turns: ## Check if the number of turns excceeded the maximum number of turns 
                 print("Game ended due to max turn limit.")
                 self.logger.log_winner("Draw (max turns reached)")
-    
                 break
 
+
+    def player_vs_Ai_play(self, heuristic):
+        
+        return
+    
+    
+    def Ai_vs_Ai_play(self, heuristic):
+        
+        return
+        
     def minimax(self, depth, alpha, beta, maximizing_player):
         """Minimax algorithm with Alpha-Beta Pruning."""
         if depth == 0 or self.is_game_over():
@@ -469,6 +519,8 @@ class MiniChess:
                     break  # Prune the search
             return min_eval, best_move
 
+    
+    
     def is_game_over(self):
         """Check if a King has been captured."""
         board = self.current_game_state["board"]
