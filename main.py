@@ -1,17 +1,17 @@
-import math
-import copy
-import time
-import sys
-import threading
 from pieces.king import king_moves
 from pieces.queen import queen_moves
 from pieces.knight import knight_moves
 from pieces.pawn import pawn_moves, promote_pawn
 from pieces.bishop import bishop_moves
 from Logger.mini_chess_logger import MiniChessLogger
-from heuristics.heuristics import get_pieces_count, e0, e1  # Import heuristics
+from heuristics.heuristics import e0, e1, e2  # Import heuristics
 
-def menu() ->int:
+def menu()->int:
+    """_summary_
+    Displays menu to the user 
+    Returns:
+        int: Returns user input
+    """
     print(' -------------------------------')
     print('|       Mini Game Chess         |')
     print('| 1. Player Vs Player           |')
@@ -37,7 +37,13 @@ def menu() ->int:
         exit(0)
     return user_input
 
+
 def main(user_input:int):
+    """_summary_
+    Main function will use the class Minichess
+    Args:
+        user_input (int): entered option by the user
+    """
     if user_input == 1:
         print(' -----------------------------------------')
         print('|            Player Mode Rules             |')
@@ -461,58 +467,68 @@ class MiniChess:
 
     def player_vs_Ai_play(self, heuristic):
         print("Welcome to Mini Chess! Enter moves as 'B2 B3'. Type 'exit' to quit.")
-        return
-    
+        while True:
+            self.display_board(self.current_game_state)
+            if self.current_game_state['turn'] =="white": # Player starts with white
+                move = input(f"{self.current_game_state['turn'].capitalize()} to move: ")
+                
+                if move.lower() =="exit":
+                    print("Game exited")
+                    exit(1)
+                
+                move = self.parse_input(move)
+                
+                if not move or not self.is_valid_move(self.current_game_state, move):
+                    self.logger.log_move(self.current_game_state['turn'], move, valid=False)
+                    print('You can\'t make this move!')
+                    print("Invalid move. Try again.")
+                    continue
+                    
+                self.make_move(self.current_game_state, move)
+            else: # AI turn 
+                # Code will be written here
+                print()
+            
+            if self.turn_count>self.max_turns:
+                print("Game ended due to max turn limit")
+                self.logger.log_winner("Draw (max turns reached)")
+                break
+                
+                
     def Ai_vs_player_play(self, heuristic):
         print("Welcome to Mini Chess! Enter moves as 'B2 B3'. Type 'exit' to quit.")
-        
-        return
+        while True:
+            self.display_board(self.current_game_state)
+            if self.current_game_state['turn'] =="black": # Player plays with black
+                move = input(f"{self.current_game_state['turn'].capitalize()} to move: ")
+                
+                if move.lower() =="exit":
+                    print("Game exited")
+                    exit(1)
+                
+                move = self.parse_input(move)
+                
+                if not move or not self.is_valid_move(self.current_game_state, move):
+                    self.logger.log_move(self.current_game_state['turn'], move, valid=False)
+                    print('You can\'t make this move!')
+                    print("Invalid move. Try again.")
+                    continue
+                    
+                self.make_move(self.current_game_state, move)
+            else: # AI turn 
+                # Code will be written here
+                print()
+            
+            if self.turn_count>self.max_turns:
+                print("Game ended due to max turn limit")
+                self.logger.log_winner("Draw (max turns reached)")
+                break
     
     
     def Ai_vs_Ai_play(self, heuristic):
         print("Welcome to Mini Chess! Enter moves as 'B2 B3'. Type 'exit' to quit.")
         return
-        
-    def minimax(self, depth, alpha, beta, maximizing_player):
-        """Minimax algorithm with Alpha-Beta Pruning."""
-        if depth == 0 or self.is_game_over():
-            return self.ai_heuristic(get_pieces_count(self.current_game_state), self.current_game_state), None
-
-        best_move = None
-        valid_moves = self.valid_moves()
-
-        if maximizing_player:  # White (Maximizing)
-            max_eval = float('-inf')
-            for move in valid_moves:
-                new_state = copy.deepcopy(self)
-                new_state.make_move(move)
-                eval_score, _ = new_state.minimax(depth - 1, alpha, beta, False)
-
-                if eval_score > max_eval:
-                    max_eval = eval_score
-                    best_move = move
-
-                alpha = max(alpha, eval_score)
-                if beta <= alpha:
-                    break  # Prune the search
-            return max_eval, best_move
-
-        else:  # Black (Minimizing)
-            min_eval = float('inf')
-            for move in valid_moves:
-                new_state = copy.deepcopy(self)
-                new_state.make_move(move)
-                eval_score, _ = new_state.minimax(depth - 1, alpha, beta, True)
-
-                if eval_score < min_eval:
-                    min_eval = eval_score
-                    best_move = move
-
-                beta = min(beta, eval_score)
-                if beta <= alpha:
-                    break  # Prune the search
-            return min_eval, best_move
-        
+            
     def is_game_over(self):
         """Check if a King has been captured."""
         board = self.current_game_state["board"]
