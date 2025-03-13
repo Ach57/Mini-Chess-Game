@@ -2,6 +2,8 @@ Mini Chess Game Trace
 Alpha-Beta Pruning: OFF
 Timeout per move: 5 seconds
 Max turns: 100
+Player 1: Human 
+Player 2: Human 
 
 Initial Board Configuration:
 bK bQ bB bN .
@@ -10,11 +12,23 @@ bK bQ bB bN .
 . wp wp . .
 . wN wB wQ wK
 
-Turn #2: white moves ((3, 1), (2, 1))
-
 bK bQ bB bN .
 . . bp bp .
 . wp . . .
 . . wp . .
 . wN wB wQ wK
+
+. bQ bB bN .
+bK . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+. bQ bB bN .
+bK . bp bp .
+. wp . . .
+. . wp . wK
+. wN wB wQ .
+
+Game Over: Black Wins! wins in 0 turns
 

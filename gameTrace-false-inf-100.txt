@@ -2,6 +2,8 @@ Mini Chess Game Trace
 Alpha-Beta Pruning: OFF
 Timeout per move: inf seconds
 Max turns: 100
+Player 1: Human 
+Player 2: Human 
 
 Initial Board Configuration:
 bK bQ bB bN .
@@ -10,7 +12,17 @@ bK bQ bB bN .
 . wp wp . .
 . wN wB wQ wK
 
-Turn #2: white moves ((3, 1), (2, 1))
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
 
 bK bQ bB bN .
 . . bp bp .
@@ -18,25 +30,53 @@ bK bQ bB bN .
 . . wp . .
 . wN wB wQ wK
 
-Invalid move made by black at turn #2
 bK bQ bB bN .
 . . bp bp .
 . wp . . .
 . . wp . .
 . wN wB wQ wK
 
-Turn #3: black moves ((1, 2), (2, 2))
-
-bK bQ bB bN .
-. . . bp .
-. wp bp . .
+bK bQ bB . .
+. . bp bp .
+. wp bN . .
 . . wp . .
 . wN wB wQ wK
 
-Invalid move made by white at turn #3
-bK bQ bB bN .
-. . . bp .
-. wp bp . .
+bK bQ bB . .
+. . bp bp .
+. wp bN . .
 . . wp . .
 . wN wB wQ wK
+
+bK bQ bB . .
+. . bp bp .
+wN wp bN . .
+. . wp . .
+. . wB wQ wK
+
+bK bQ bB . .
+. . bp bp .
+wN wp bN . .
+. . wp . .
+. . wB wQ wK
+
+bK . bB . .
+. bQ bp bp .
+wN wp bN . .
+. . wp . .
+. . wB wQ wK
+
+bK . bB . .
+. bQ wN bp .
+. wp bN . .
+. . wp . .
+. . wB wQ wK
+
+. . bB . .
+bK bQ wN bp .
+. wp bN . .
+. . wp . .
+. . wB wQ wK
+
+Game Over: White Wins! wins in 0 turns
 

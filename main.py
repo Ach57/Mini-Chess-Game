@@ -205,7 +205,7 @@ class MiniChess:
 
         game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
 
-    def parse_input(self, move):
+    def parse_input(self, move:str):
         """Converts player input into board coordinates."""
         try:
             start, end = move.split()
@@ -217,7 +217,13 @@ class MiniChess:
         """Handles a human vs. human game loop."""
         while True:
             self.display_board(self.current_game_state)
-            move = self.parse_input(input(f"{self.current_game_state['turn'].capitalize()} to move: "))
+            move = input(f"{self.current_game_state['turn'].capitalize()} to move: ").upper()
+            if move.lower() =="exit":
+                print("Exiting the game!")
+                self.logger.log_info("Game exited!")
+                exit(0)
+            move = self.parse_input(move)
+            
             if move and self.is_valid_move(self.current_game_state, move):
                 self.make_move(self.current_game_state, move)
             else:
@@ -230,8 +236,14 @@ class MiniChess:
         while True:
             self.display_board(self.current_game_state)
             if self.current_game_state["turn"] == "white":
-                move = self.parse_input(input("Your move: "))
+                move = input("White Your move: ").upper()
+                if move.lower() =="exit":
+                    print("Exiting the game!")
+                    self.logger.log_info("Game exited!")
+                    exit(0)
+                move = self.parse_input(move)
             else:
+                print("Black Move")
                 move = self.search_algorithm.search_best_move(3)[1]
 
             if move and self.is_valid_move(self.current_game_state, move):

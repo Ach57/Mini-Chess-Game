@@ -107,3 +107,8 @@ class MiniChessLogger:
         """Log the winner at the end of the game."""
         with open(self.log_file, 'a') as file:
             file.write(f"Game Over: {winner} wins in {self.move_count} turns\n\n")
+    
+    def log_info(self, message: str):
+        with open(self.log_file, "a") as file:
+            file.write(message)
+            file.write("\n")

@@ -37,7 +37,7 @@ def get_pieces_count(game_state: dict) ->dict:
         
     return output_dict
 
-def e0(pieces_count: dict) -> int:
+def e0(pieces_count: dict, game_state:dict) -> int:
     """_summary_
     e0: Purely materialistic evaluation based on the count of each type of piece.
     Args:
