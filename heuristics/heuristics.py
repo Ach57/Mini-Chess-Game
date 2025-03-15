@@ -137,7 +137,7 @@ def e1(pieces_count: dict, game_state:dict) ->int:
                     bonus -= bonus_point_distribution[piece]
         return bonus
         
-    score = e0(pieces_count)    
+    score = e0(pieces_count, game_state)    
     white_position_score = 0
     black_position_score = 0
     for piece in ['p','B','N','Q','K']:
@@ -241,7 +241,7 @@ def e2(piece_count: dict, game_state: dict ) ->int:
                     moves.append((new_x, new_y))
         return moves
     
-    score =e0(piece_count)
+    score =e0(piece_count,game_state)
     points = 0 
 
     for row in range(len(board)):

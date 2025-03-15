@@ -3,7 +3,7 @@ import time
 from heuristics.heuristics import get_pieces_count
 
 class SearchAlgorithm:
-    def __init__(self, game, heuristic, alpha_beta=True, max_time=5):
+    def __init__(self, game, heuristic, alpha_beta:bool=True, max_time:int=5, maximizier:bool=True) ->None:
         """
         Initializes the search algorithm.
         
@@ -18,7 +18,7 @@ class SearchAlgorithm:
         self.alpha_beta = alpha_beta  # Boolean: True for Alpha-Beta, False for Minimax
         self.max_time = max_time  # Time limit for AI move computation
         self.start_time = None  # Track the start time for time management
-
+        self.maximizer = maximizier
     def search_best_move(self, depth):
         """
         Decides whether to use Minimax or Alpha-Beta based on the `self.alpha_beta` flag.
@@ -29,65 +29,54 @@ class SearchAlgorithm:
         Returns:
             tuple: (best_score, best_move)
         """
-        self.start_time = time.time()  # Start the timer
-
-        if self.alpha_beta:
+        self.start_time = time.time()
+        if self.alpha_beta: # If alpha beta activated
             return self.alpha_beta_pruning(depth, float('-inf'), float('inf'), True)
-        else:
-            return self.minimax(depth, True)
+        else: 
+            #return self.minimax(game_state=copy_state,depth = depth, maximizing_player=True) # Call for minimax with maximizing at the turn of the Ai
+            move = self.minimax(self.game, depth, self.maximizer)
+            return move[1]
+        
 
-    """
-    Implements the basic Minimax.
-
-    Args:
-        depth (int): How deep the search tree should go.
-        maximizing_player (bool): True if maximizing (White), False if minimizing (Black).
-
-    Returns:
-        tuple: (best_score, best_move)
-    """
-    def minimax(self, depth, maximizing_player):
-        # Check if time is up before continuing the search
+    def minimax(self, game_state , depth: int, maximizing_player: bool):
         if time.time() - self.start_time >= self.max_time:
             print("AI exceeded time limit! It loses.")
             self.game.logger.log_winner(f"{'White' if maximizing_player else 'Black'} loses due to timeout.")
-            exit(0)  # AI automatically loses if it takes too long
-
-        # Base case: If depth = 0 or game is over, evaluate the board.
-        if depth == 0 or self.game.is_game_over():
-            return self.evaluate_state(), None
+            exit(1)
+        
+        if depth == 0 or self.game.is_game_over(): # check if we're at depth 0 or if the game is over or not
+            return self.evaluation_score(), None # returns the heuristic score
 
         best_move = None
-        valid_moves = self.game.valid_moves(self.game.current_game_state)
-
-        if maximizing_player:  # White (Maximizing)
-            max_eval = float('-inf')
+        valid_moves = game_state.valid_moves(game_state.current_game_state) # Get all valid moves of the current state
+        
+        if maximizing_player:
+            max_eval = float("-inf")
             for move in valid_moves:
-                new_state = copy.deepcopy(self.game)
-                new_state.make_move(new_state.current_game_state, move)
-
-                eval_score, _ = self.minimax(depth - 1, False)  # Use `self.minimax` instead of `new_state.minimax`
-
-                if eval_score > max_eval:
+                new_state = copy.deepcopy(game_state)
+                new_state.ai_make_move(new_state.current_game_state, move)
+                
+                eval_score, _ = self.minimax(new_state, depth-1, False)
+                
+                if eval_score>max_eval:
                     max_eval = eval_score
-                    best_move = move
-
+                    best_move = move 
+            
             return max_eval, best_move
-
-        else:  # Black (Minimizing)
-            min_eval = float('inf')
+        else:
+            min_eval = float("+inf")
             for move in valid_moves:
-                new_state = copy.deepcopy(self.game)
-                new_state.make_move(new_state.current_game_state, move)
-
-                eval_score, _ = self.minimax(depth - 1, True)  # Use `self.minimax` instead of `new_state.minimax`
-
-                if eval_score < min_eval:
+                new_state = copy.deepcopy(game_state)
+                new_state.ai_make_move(new_state.current_game_state, move)
+                print(new_state.current_game_state)
+                eval_score, _ = self.minimax(new_state,depth-1, True)
+                if eval_score< min_eval:
+                    
                     min_eval = eval_score
                     best_move = move
-
+                
             return min_eval, best_move
-
+        
     """
     Implements Alpha-Beta Pruning to optimize Minimax.
     
@@ -151,12 +140,16 @@ class SearchAlgorithm:
                     break  # Prune the remaining branches
 
             return min_eval, best_move
-
-    def evaluate_state(self):
+            
+    def evaluation_score(self):
         """
         Evaluates the game state using the chosen heuristic.
         
         Returns:
             int: Heuristic score representing the favorability of the state.
         """
-        return self.heuristic(get_pieces_count(self.game.current_game_state), self.game.current_game_state)
+        heuristic_func = self.heuristic
+        current_game_state = self.game.current_game_state
+        return heuristic_func(get_pieces_count(current_game_state), current_game_state)
+        
+        

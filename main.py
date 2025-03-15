@@ -18,13 +18,12 @@ def menu() -> int:
     print("| 4. AI Vs AI                   |")
     print("| 5. Exit                       |")
     print(' -------------------------------')
-
     while True:
         try:
             user_input = int(input("Please enter a valid option: "))
             if 1 <= user_input <= 5:
                 return user_input
-            else:
+            else:   
                 print("Invalid choice. Choose between 1-5.")
         except ValueError:
             print("Please enter a number.")
@@ -205,6 +204,18 @@ class MiniChess:
 
         game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
 
+    def ai_make_move(self, game_state, move):
+        """Executes a move and handles game updates."""
+        start, end = move
+        piece = game_state["board"][start[0]][start[1]]
+        game_state["board"][start[0]][start[1]] = '.'
+        game_state["board"][end[0]][end[1]] = piece
+
+        if piece in ["wp", "bp"]:
+            promote_pawn(end, game_state)
+
+        game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
+    
     def parse_input(self, move:str):
         """Converts player input into board coordinates."""
         try:
@@ -231,20 +242,24 @@ class MiniChess:
 
     def player_vs_Ai_play(self, heuristic):
         """Handles a human vs. AI game loop."""
-        self.search_algorithm = SearchAlgorithm(self, heuristic, self.alpha_beta, self.timeout)  # ✅ Ensure AI is initialized
-        
+        self.search_algorithm = SearchAlgorithm(game=self, heuristic = heuristic,alpha_beta= self.alpha_beta, max_time = self.timeout, maximizier=False)  #  Creating an instance of the searchAlgorithm Class
+
+        #Game Starts here
         while True:
-            self.display_board(self.current_game_state)
-            if self.current_game_state["turn"] == "white":
+            self.display_board(self.current_game_state) # Dislay board 
+            
+            if self.current_game_state["turn"] == "white": # Human Starts with white turn
+                
                 move = input("White Your move: ").upper()
-                if move.lower() =="exit":
+                if move.lower() =="exit": # Exit game when they type exit
                     print("Exiting the game!")
                     self.logger.log_info("Game exited!")
                     exit(0)
-                move = self.parse_input(move)
+                    
+                move = self.parse_input(move) # Get the move using parse_input
             else:
                 print("Black Move")
-                move = self.search_algorithm.search_best_move(3)[1]
+                move = self.search_algorithm.search_best_move(3) # Make AI move
 
             if move and self.is_valid_move(self.current_game_state, move):
                 self.make_move(self.current_game_state, move)
@@ -259,10 +274,17 @@ class MiniChess:
             self.display_board(self.current_game_state)
 
             if self.current_game_state["turn"] == "white":  # AI moves first
-                move = self.search_algorithm.search_best_move(3)[1]
+                move = self.search_algorithm.search_best_move(4)
                 print(f"AI Move: {move}")
             else:  # Human plays
-                move = self.parse_input(input("Your move: "))
+                move = input("Black move: ").upper()
+                
+                if move.lower() =="exit":
+                    print("Exiting the game!")
+                    self.logger.log_info("Game exited!")
+                    exit(0)
+                
+                move = self.parse_input(move)
 
             if move and self.is_valid_move(self.current_game_state, move):
                 self.make_move(self.current_game_state, move)
@@ -275,7 +297,7 @@ class MiniChess:
         
         while True:
             self.display_board(self.current_game_state)
-            move = self.search_algorithm.search_best_move(3)[1]
+            move = ""
             if move:
                 self.make_move(self.current_game_state, move)
             else:

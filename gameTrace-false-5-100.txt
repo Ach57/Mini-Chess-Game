@@ -18,17 +18,5 @@ bK bQ bB bN .
 . . wp . .
 . wN wB wQ wK
 
-. bQ bB bN .
-bK . bp bp .
-. wp . . .
-. . wp . .
-. wN wB wQ wK
-
-. bQ bB bN .
-bK . bp bp .
-. wp . . .
-. . wp . wK
-. wN wB wQ .
-
-Game Over: Black Wins! wins in 0 turns
+Game Over: White Wins! wins in 0 turns
 
