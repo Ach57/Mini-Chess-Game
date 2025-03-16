@@ -88,25 +88,26 @@ def e1(pieces_count: dict, game_state:dict) ->int:
             'white': [(3, 1), (3, 3)], 
         },
         'N': {  # Knight positions
-            'black': [(1, 2), (2, 2), (3, 2)],  
-            'white': [(1, 2), (2, 2), (3, 2)], 
+            'black': [(2,1), (2,3), (1,0), (1,4)],
+            'white': [(2,1), (2,3), (3,0), (3,4)],
+
         },
         'Q': {  # Queen positions
         'black': [(2, 2)],  
             'white': [(2, 2)],   
         },
         'K': {  # King positions
-            'black': [(0, 0), (0, 4)],  
-            'white': [(4, 0), (4, 4)],
+            'black': [(0, 2)],  
+            'white': [(4, 2)],  
         },
     }
     
     bonus_point_distribution = {
-        'p': 10, # when the pawn is about to be promoted to queen
+        'p': 8, # when the pawn is about to be promoted to queen
         'B': 3,
         "N": 3,
-        "Q":5,
-        "K": 5
+        "Q":7,
+        "K": 6
     }
     
     def calculate_position_bonus(piece:str,color: str ,game_state:dict) ->int:

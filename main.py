@@ -194,10 +194,12 @@ class MiniChess:
             promote_pawn(end, game_state)
 
         if not any("bK" in row for row in game_state["board"]):
+            self.display_board(self.current_game_state)
             print("White Wins!")
             self.logger.log_winner("White Wins!")
             exit(0)
         elif not any("wK" in row for row in game_state["board"]):
+            self.display_board(self.current_game_state)
             print("Black Wins!")
             self.logger.log_winner("Black Wins!")
             exit(0)

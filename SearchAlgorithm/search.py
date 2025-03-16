@@ -19,6 +19,7 @@ class SearchAlgorithm:
         self.max_time = max_time  # Time limit for AI move computation
         self.start_time = None  # Track the start time for time management
         self.maximizer = maximizier
+    
     def search_best_move(self, depth):
         """
         Decides whether to use Minimax or Alpha-Beta based on the `self.alpha_beta` flag.
@@ -44,8 +45,10 @@ class SearchAlgorithm:
             self.game.logger.log_winner(f"{'White' if maximizing_player else 'Black'} loses due to timeout.")
             exit(1)
         
+        score = self.evaluation_score(game_state) # Evaluate the heuristic value
+        
         if depth == 0 or self.game.is_game_over(): # check if we're at depth 0 or if the game is over or not
-            return self.evaluation_score(), None # returns the heuristic score
+            return self.evaluation_score(game_state), None # returns the heuristic score
 
         best_move = None
         valid_moves = game_state.valid_moves(game_state.current_game_state) # Get all valid moves of the current state
@@ -68,7 +71,6 @@ class SearchAlgorithm:
             for move in valid_moves:
                 new_state = copy.deepcopy(game_state)
                 new_state.ai_make_move(new_state.current_game_state, move)
-                print(new_state.current_game_state)
                 eval_score, _ = self.minimax(new_state,depth-1, True)
                 if eval_score< min_eval:
                     
@@ -141,7 +143,7 @@ class SearchAlgorithm:
 
             return min_eval, best_move
             
-    def evaluation_score(self):
+    def evaluation_score(self, current_state):
         """
         Evaluates the game state using the chosen heuristic.
         
@@ -149,7 +151,7 @@ class SearchAlgorithm:
             int: Heuristic score representing the favorability of the state.
         """
         heuristic_func = self.heuristic
-        current_game_state = self.game.current_game_state
+        current_game_state = current_state.current_game_state
         return heuristic_func(get_pieces_count(current_game_state), current_game_state)
         
         

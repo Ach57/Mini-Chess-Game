@@ -12,17 +12,4 @@ bK bQ bB bN .
 . wp wp . .
 . wN wB wQ wK
 
-bK bQ bB bN .
-. . bp bp .
-. wp . . .
-. . wp . .
-. wN wB wQ wK
-
-. bQ bB bN .
-bK . bp bp .
-. wp . . .
-. . wp . .
-. wN wB wQ wK
-
-Game Over: White Wins! wins in 0 turns
-
+Game exited!

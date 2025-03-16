@@ -14,14 +14,45 @@ bK bQ bB bN .
 
 bK bQ bB bN .
 . . bp bp .
-. wp . . .
-. . wp . .
+. . . . .
+. wp wp . .
 . wN wB wQ wK
 
-. bQ bB bN .
-bK . bp bp .
-. wp . . .
-. . wp . .
-. wN wB wQ wK
+bK bQ bB bN .
+. . bp bp .
+wN . . . .
+. wp wp . .
+. . wB wQ wK
 
-Game exited!
+bK . bB bN .
+. bQ bp bp .
+wN . . . .
+. wp wp . .
+. . wB wQ wK
+
+bK . bB bN .
+. bQ bp bp .
+wN . . . .
+. wp wp . wK
+. . wB wQ .
+
+bK . bB bN .
+. bQ bp . .
+wN . . bp .
+. wp wp . wK
+. . wB wQ .
+
+bK . bB bN .
+. bQ bp . .
+wN . . bp wK
+. wp wp . .
+. . wB wQ .
+
+bK . bB . .
+. bQ bp . .
+wN . . bp bN
+. wp wp . .
+. . wB wQ .
+
+Game Over: Black Wins! wins in 0 turns
+
