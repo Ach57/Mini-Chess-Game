@@ -1,0 +1,2720 @@
+Mini Chess Game Trace
+Alpha-Beta Pruning: ON
+Timeout per move: 5 seconds
+Max turns: 100
+Player 1: Human 
+Player 2: Human 
+
+Initial Board Configuration:
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+

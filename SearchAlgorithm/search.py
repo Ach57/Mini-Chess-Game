@@ -32,7 +32,8 @@ class SearchAlgorithm:
         """
         self.start_time = time.time()
         if self.alpha_beta: # If alpha beta activated
-            return self.alpha_beta_pruning(depth, float('-inf'), float('inf'), True)
+            move = self.alpha_beta_pruning(self.game,depth, float('-inf'), float('inf'), self.maximizer)
+            return move[1]
         else: 
             #return self.minimax(game_state=copy_state,depth = depth, maximizing_player=True) # Call for minimax with maximizing at the turn of the Ai
             move = self.minimax(self.game, depth, self.maximizer)
@@ -44,8 +45,6 @@ class SearchAlgorithm:
             print("AI exceeded time limit! It loses.")
             self.game.logger.log_winner(f"{'White' if maximizing_player else 'Black'} loses due to timeout.")
             exit(1)
-        
-        score = self.evaluation_score(game_state) # Evaluate the heuristic value
         
         if depth == 0 or self.game.is_game_over(): # check if we're at depth 0 or if the game is over or not
             return self.evaluation_score(game_state), None # returns the heuristic score
@@ -91,7 +90,7 @@ class SearchAlgorithm:
     Returns:
         tuple: (best_score, best_move)
     """
-    def alpha_beta_pruning(self, depth, alpha, beta, maximizing_player):
+    def alpha_beta_pruning(self,game_state, depth, alpha, beta, maximizing_player):
         # Check if time is up before continuing the search
         if time.time() - self.start_time >= self.max_time:
             print("AI exceeded time limit! It loses.")
@@ -100,18 +99,18 @@ class SearchAlgorithm:
 
         # Base case: If depth = 0 or game is over, evaluate the board.
         if depth == 0 or self.game.is_game_over():
-            return self.evaluate_state(), None
+            return self.evaluation_score(game_state), None
 
         best_move = None
-        valid_moves = self.game.valid_moves(self.game.current_game_state)
+        valid_moves = game_state.valid_moves(game_state.current_game_state)
 
         if maximizing_player:  # White (Maximizing)
             max_eval = float('-inf')
             for move in valid_moves:
-                new_state = copy.deepcopy(self.game)
-                new_state.make_move(new_state.current_game_state, move)
+                new_state = copy.deepcopy(game_state)
+                new_state.ai_make_move(new_state.current_game_state, move)
 
-                eval_score, _ = self.alpha_beta_pruning(depth - 1, alpha, beta, False)
+                eval_score, _ = self.alpha_beta_pruning(new_state,depth - 1, alpha, beta, False)
 
                 if eval_score > max_eval:
                     max_eval = eval_score
@@ -127,10 +126,10 @@ class SearchAlgorithm:
         else:  # Black (Minimizing)
             min_eval = float('inf')
             for move in valid_moves:
-                new_state = copy.deepcopy(self.game)
-                new_state.make_move(new_state.current_game_state, move)
+                new_state = copy.deepcopy(game_state)
+                new_state.ai_make_move(new_state.current_game_state, move)
 
-                eval_score, _ = self.alpha_beta_pruning(depth - 1, alpha, beta, True)
+                eval_score, _ = self.alpha_beta_pruning(new_state,depth - 1, alpha, beta, True)
 
                 if eval_score < min_eval:
                     min_eval = eval_score

@@ -260,8 +260,8 @@ class MiniChess:
                     
                 move = self.parse_input(move) # Get the move using parse_input
             else:
-                print("Black Move")
                 move = self.search_algorithm.search_best_move(3) # Make AI move
+                print(f"Black AI Move: {move}")
 
             if move and self.is_valid_move(self.current_game_state, move):
                 self.make_move(self.current_game_state, move)
@@ -270,13 +270,12 @@ class MiniChess:
 
     def Ai_vs_player_play(self):
         """Handles an AI vs. Human game loop."""
-        self.search_algorithm = SearchAlgorithm(self, self.heuristic, self.alpha_beta, self.timeout)  # ✅ Ensure AI is initialized
+        self.search_algorithm = SearchAlgorithm(self, self.heuristic, self.alpha_beta, self.timeout, maximizier=True)  # ✅ Ensure AI is initialized
 
         while True:
             self.display_board(self.current_game_state)
-
             if self.current_game_state["turn"] == "white":  # AI moves first
-                move = self.search_algorithm.search_best_move(4)
+                move = self.search_algorithm.search_best_move(3)
                 print(f"AI Move: {move}")
             else:  # Human plays
                 move = input("Black move: ").upper()
@@ -299,7 +298,7 @@ class MiniChess:
         
         while True:
             self.display_board(self.current_game_state)
-            move = ""
+            move = self.search_algorithm.search_best_move(3)
             if move:
                 self.make_move(self.current_game_state, move)
             else:
