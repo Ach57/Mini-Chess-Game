@@ -1,4 +1,3 @@
-import time
 from pieces.king import king_moves
 from pieces.queen import queen_moves
 from pieces.knight import knight_moves
@@ -52,10 +51,10 @@ def main(user_input: int):
 
     elif user_input in [2, 3, 4]:  # AI-related game modes
         print(' -----------------------------------------')
-        print('| AI Mode Rules                           |')
+        print('|            AI Mode Rules                |')
         print('| Enter the maximum allowed time (in sec) |')
         print('| Enter the maximum number of turns       |')
-        print('| Define the heuristic: e0, e1, e2         |')
+        print('| Define the heuristic: e0, e1, e2        |')
         print('| Enable alpha-beta? (yes/no)             |')
         print(' -----------------------------------------')
 
@@ -78,28 +77,63 @@ def main(user_input: int):
                     print("Please enter a positive number for turns.")
             except ValueError:
                 print("Invalid input. Please enter an integer.")
-
-        # ✅ Convert heuristic input from string to function reference
+        
+        game = MiniChess(timeout=max_time, max_turns=max_turns)
+        
         heuristic_map = {"e0": e0, "e1": e1, "e2": e2}
-        heuristic_str = input("Heuristic (e0, e1, e2): ").lower()
-
-        while heuristic_str not in heuristic_map:
-            heuristic_str = input("Invalid heuristic. Choose from (e0, e1, e2): ").lower()
-
-        heuristic = heuristic_map[heuristic_str]  # Map to actual function
-
-        alpha_beta = input("Enable Alpha-Beta? (yes/no): ").lower()
-        alpha_beta = alpha_beta in ["yes", "y"]
-
-        game = MiniChess(alpha_beta=alpha_beta, timeout=max_time, max_turns=max_turns, heuristic=heuristic)
-
-        if user_input == 2:
-            game.player_vs_Ai_play(heuristic)
-        elif user_input == 3:
-            game.Ai_vs_player_play()
-        elif user_input == 4:
+        
+        if user_input ==4:
+            heuristic_str1 = input("AI_1: Heuristic (e0, e1, e2): ").lower()
+            while heuristic_str1 not in heuristic_map:
+                heuristic_str1 = input("Invalid heuristic. Choose from (e0, e1, e2): ").lower()
+            
+            heuristic1 = heuristic_map[heuristic_str1]
+            
+            heuristic_str2 = input("AI_2: Heuristic (e0, e1, e2): ").lower()
+            while heuristic_str2 not in heuristic_map:
+                heuristic_str2 = input("Invalid heuristic. Choose from (e0, e1, e2): ").lower()
+            
+            heuristic2 = heuristic_map[heuristic_str2]
+            
+            alpha_beta1 =  input("AI_1: Enable Alpha-Beta? (yes/no): ").lower()
+            alpha_beta1 = alpha_beta1 in ["yes", "y"]
+            
+            alpha_beta2 =  input("AI_1: Enable Alpha-Beta? (yes/no): ").lower()
+            alpha_beta2 = alpha_beta2 in ["yes", "y"]
+            
+            heuristic = [heuristic1, heuristic2]
+            
+            game.player1_type = "AI"
+            game.player2_type = "AI"
+            game.heuristic = heuristic
+            game.logger.heuristic1 = heuristic1
+            game.logger.heuristic2 =heuristic2
+            game.alpha_beta = [alpha_beta1,alpha_beta2]
             game.Ai_vs_Ai_play(heuristic)
+            
+        else:
+            heuristic_str = input("Heuristic (e0, e1, e2): ").lower()
 
+            while heuristic_str not in heuristic_map:
+                heuristic_str = input("Invalid heuristic. Choose from (e0, e1, e2): ").lower()
+
+            heuristic = heuristic_map[heuristic_str]  # Map to actual function
+
+            alpha_beta = input("Enable Alpha-Beta? (yes/no): ").lower()
+            alpha_beta = alpha_beta in ["yes", "y"]
+            game.alpha_beta = alpha_beta
+            
+            if user_input == 2:
+                game.player1_type = "Human"
+                game.player2_type = "AI"
+                game.logger.heuristic = heuristic
+                game.player_vs_Ai_play(heuristic)
+            elif user_input == 3:
+                game.player1_type = "AI"
+                game.player2_type= "Human"
+                game.logger.heuristic = heuristic
+                game.Ai_vs_player_play()
+                
     elif user_input == 5:
         print("Goodbye!")
         exit(0)
@@ -122,17 +156,14 @@ class MiniChess:
         self.current_game_state = self.init_board()
         self.logger = MiniChessLogger(alpha_beta, timeout, max_turns, player1_type, player2_type)
         self.turn_count = 0  # Track number of turns for draw condition
-        self.piece_count_history = []  # Store past counts of pieces
+        self.piece_count_history = [] 
         self.max_turns = max_turns
         self.timeout = timeout
-        self.heuristic = heuristic  # Store heuristic function (if any)
+        self.heuristic = heuristic
+        self.alpha_beta = alpha_beta  
+        self.player1_type = player1_type
+        self.player2_type = player2_type
         
-        self.alpha_beta = alpha_beta  # ✅ Fix: Store Alpha-Beta flag
-        
-        # ✅ Ensure AI search algorithm is initialized only if needed
-        self.search_algorithm = None
-        if player1_type == "AI" or player2_type == "AI":
-            self.search_algorithm = SearchAlgorithm(self, heuristic, alpha_beta, timeout)
 
 
     def is_game_over(self):
@@ -228,6 +259,7 @@ class MiniChess:
 
     def player_vs_player_play(self):
         """Handles a human vs. human game loop."""
+        self.logger.start_logging()
         while True:
             self.display_board(self.current_game_state)
             move = input(f"{self.current_game_state['turn'].capitalize()} to move: ").upper()
@@ -294,11 +326,19 @@ class MiniChess:
                 
     def Ai_vs_Ai_play(self, heuristic):
         """Handles an AI vs. AI game loop."""
-        self.search_algorithm = SearchAlgorithm(self, heuristic, self.alpha_beta, self.timeout)  # ✅ Ensure AI is initialized
+        self.search_algorithm = SearchAlgorithm(self, self.alpha_beta, self.timeout)  # ✅ Ensure AI is initialized
         
         while True:
             self.display_board(self.current_game_state)
-            move = self.search_algorithm.search_best_move(3)
+            if self.current_game_state['turn'] =="white":
+                self.search_algorithm.heuristic = heuristic[0]
+                self.search_algorithm.alpha_beta = self.alpha_beta[0]
+                move = self.search_algorithm.search_best_move(3)
+            else:
+                self.search_algorithm.heuristic = heuristic[1]
+                self.search_algorithm.alpha_beta = self.alpha_beta[1]
+                move = self.search_algorithm.search_best_move(3)
+                
             if move:
                 self.make_move(self.current_game_state, move)
             else:

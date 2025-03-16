@@ -12,10 +12,4 @@ bK bQ bB bN .
 . wp wp . .
 . wN wB wQ wK
 
-bK bQ bB bN .
-. . bp bp .
-. . . . .
-. wp wp wQ .
-. wN wB . wK
-
 Game exited!

@@ -25,7 +25,6 @@ class MiniChessLogger:
         self.player2_type = player2_type
         self.heuristic1 = heuristic1
         self.heuristic2 = heuristic2
-        self.start_logging()
 
     def start_logging(self):
         """Initialize the log file with game parameters."""
@@ -112,3 +111,4 @@ class MiniChessLogger:
         with open(self.log_file, "a") as file:
             file.write(message)
             file.write("\n")
+
