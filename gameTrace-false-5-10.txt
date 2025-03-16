@@ -1,0 +1,5 @@
+Mini Chess Game Trace
+Alpha-Beta Pruning: OFF
+Timeout per move: 5 seconds
+Max turns: 10
+Player 1: Human 

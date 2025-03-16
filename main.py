@@ -78,8 +78,6 @@ def main(user_input: int):
             except ValueError:
                 print("Invalid input. Please enter an integer.")
         
-        game = MiniChess(timeout=max_time, max_turns=max_turns)
-        
         heuristic_map = {"e0": e0, "e1": e1, "e2": e2}
         
         if user_input ==4:
@@ -95,20 +93,12 @@ def main(user_input: int):
             
             heuristic2 = heuristic_map[heuristic_str2]
             
-            alpha_beta1 =  input("AI_1: Enable Alpha-Beta? (yes/no): ").lower()
-            alpha_beta1 = alpha_beta1 in ["yes", "y"]
-            
-            alpha_beta2 =  input("AI_1: Enable Alpha-Beta? (yes/no): ").lower()
-            alpha_beta2 = alpha_beta2 in ["yes", "y"]
+            alpha_beta =  input("AI_1: Enable Alpha-Beta? (yes/no): ").lower()
+            alpha_beta = alpha_beta in ["yes", "y"]
             
             heuristic = [heuristic1, heuristic2]
             
-            game.player1_type = "AI"
-            game.player2_type = "AI"
-            game.heuristic = heuristic
-            game.logger.heuristic1 = heuristic1
-            game.logger.heuristic2 =heuristic2
-            game.alpha_beta = [alpha_beta1,alpha_beta2]
+            game = MiniChess(alpha_beta=alpha_beta, timeout=max_time, max_turns=max_turns, heuristic=heuristic, player1_type="AI", player2_type="AI")
             game.Ai_vs_Ai_play(heuristic)
             
         else:
@@ -121,17 +111,12 @@ def main(user_input: int):
 
             alpha_beta = input("Enable Alpha-Beta? (yes/no): ").lower()
             alpha_beta = alpha_beta in ["yes", "y"]
-            game.alpha_beta = alpha_beta
             
             if user_input == 2:
-                game.player1_type = "Human"
-                game.player2_type = "AI"
-                game.logger.heuristic = heuristic
+                game = MiniChess(alpha_beta=alpha_beta, timeout=max_time, max_turns= max_turns, heuristic=heuristic, player1_type="Human", player2_type="AI")
                 game.player_vs_Ai_play(heuristic)
             elif user_input == 3:
-                game.player1_type = "AI"
-                game.player2_type= "Human"
-                game.logger.heuristic = heuristic
+                game = MiniChess(alpha_beta=alpha_beta, timeout=max_time, max_turns=max_turns, heuristic=heuristic, player1_type="AI", player2_type="Human")
                 game.Ai_vs_player_play()
                 
     elif user_input == 5:
@@ -153,8 +138,19 @@ class MiniChess:
             player1_type (str): "Human" or "AI" (indicates whether Player 1 is a human or AI).
             player2_type (str): "Human" or "AI" (indicates whether Player 2 is a human or AI).
         """
+        heuristic_map = {e0: "e0", e1: "e1", e2:"e2"}
         self.current_game_state = self.init_board()
-        self.logger = MiniChessLogger(alpha_beta, timeout, max_turns, player1_type, player2_type)
+        
+        if player1_type=="AI" and player2_type=="AI":
+            self.logger = MiniChessLogger(alpha_beta=alpha_beta, timeout=timeout, max_turns=max_turns, player1_type=player1_type, player2_type=player2_type, heuristic1=heuristic_map[heuristic[0]], heuristic2=heuristic_map[heuristic[1]])
+        else:
+            if player1_type=="Human" and player2_type =="Human":
+                self.logger = MiniChessLogger(alpha_beta, timeout, max_turns, player1_type, player2_type, heuristic1=None, heuristic2=None)
+            elif player1_type =="AI" and player2_type =="Human":
+                self.logger = MiniChessLogger(alpha_beta, timeout, max_turns, player1_type, player2_type, heuristic1=heuristic_map[heuristic], heuristic2=None)
+            elif player1_type=="Human" and player2_type =="AI":
+                self.logger = MiniChessLogger(alpha_beta, timeout, max_turns, player1_type, player2_type, heuristic1=None, heuristic2=heuristic_map[heuristic])
+        
         self.turn_count = 0  # Track number of turns for draw condition
         self.piece_count_history = [] 
         self.max_turns = max_turns
@@ -303,7 +299,6 @@ class MiniChess:
     def Ai_vs_player_play(self):
         """Handles an AI vs. Human game loop."""
         self.search_algorithm = SearchAlgorithm(self, self.heuristic, self.alpha_beta, self.timeout, maximizier=True)  # ✅ Ensure AI is initialized
-
         while True:
             self.display_board(self.current_game_state)
             if self.current_game_state["turn"] == "white":  # AI moves first
