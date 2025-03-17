@@ -223,12 +223,12 @@ class MiniChess:
         if not any("bK" in row for row in game_state["board"]):
             self.display_board(self.current_game_state)
             print("White Wins!")
-            self.logger.log_winner("White Wins!")
+            self.logger.log_winner("White")
             exit(0)
         elif not any("wK" in row for row in game_state["board"]):
             self.display_board(self.current_game_state)
             print("Black Wins!")
-            self.logger.log_winner("Black Wins!")
+            self.logger.log_winner("Black")
             exit(0)
 
         game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
@@ -289,11 +289,15 @@ class MiniChess:
                     exit(0)
                     
                 move = self.parse_input(move) # Get the move using parse_input
-            else:
+            else:    
                 move = self.search_algorithm.search_best_move(3) # Make AI move
                 print(f"Black AI Move: {move}")
 
             if move and self.is_valid_move(self.current_game_state, move):
+                if self.player1_type =="Human":
+                    self.logger.log_move(player=self.current_game_state['turn'], move=move)
+                if self.player2_type =="AI":
+                    self.logger.log_move()
                 self.make_move(self.current_game_state, move)
             else:
                 print("Invalid move.")

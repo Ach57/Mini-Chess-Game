@@ -1,5 +1,3 @@
-import time
-
 class MiniChessLogger:
     def __init__(self, alpha_beta, timeout, max_turns, player1_type, player2_type, heuristic1=None, heuristic2=None):
         """
@@ -47,7 +45,8 @@ class MiniChessLogger:
 
     def log_move(self, player, move, ai_time=None, heuristic_score=None, alpha_beta_score=None, valid=True):
         """Log each move taken by human or AI."""
-        self.move_count += 1  # Increment turn count
+        if valid: 
+            self.move_count += 1  # Increment turn count
 
         with open(self.log_file, 'a') as file:
             if not valid:
@@ -106,7 +105,7 @@ class MiniChessLogger:
     def log_winner(self, winner):
         """Log the winner at the end of the game."""
         with open(self.log_file, 'a') as file:
-            file.write(f"Game Over: {winner} wins in {self.move_count} turns\n\n")
+            file.write(f"Game Over: {winner} wins in {self.move_count // 2} turns\n\n")
     
     def log_info(self, message: str):
         with open(self.log_file, "a") as file:
