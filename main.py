@@ -267,8 +267,10 @@ class MiniChess:
             
             if move and self.is_valid_move(self.current_game_state, move):
                 self.make_move(self.current_game_state, move)
+                self.logger.log_move(player=self.current_game_state['turn'], move=move)
             else:
                 print("Invalid move.")
+                self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
 
     def player_vs_Ai_play(self, heuristic):
         """Handles a human vs. AI game loop."""
