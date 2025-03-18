@@ -19,12 +19,18 @@ def bishop_moves(position:tuple, game_state: dict)->list[tuple]:
     rows, cols = len(board), len(board[0])
     
     for dx, dy in directions:
-        for step in range(1, 5):  # Move as far as possible
-            new_x, new_y = x + dx * step, y + dy * step
-            if 0 <= new_x < rows and 0 <= new_y < cols:
+        for step in range(1, 5):
+            new_x, new_y = x+dx*step, y+dy*step
+            if 0<= new_x<rows and 0<= new_y<cols:
                 target_piece = board[new_x][new_y]
-                if target_piece =="." or (target_piece and target_piece[0] !=turn[0]):
+                if target_piece ==".":
                     moves.append((new_x, new_y))
+                elif target_piece and target_piece[0] !=turn[0]:
+                    moves.append((new_x, new_y))
+                    break
+                else:
+                    break
+                
     return moves
     
     

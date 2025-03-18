@@ -33,11 +33,15 @@ class SearchAlgorithm:
         self.start_time = time.time()
         if self.alpha_beta: # If alpha beta activated
             move = self.alpha_beta_pruning(self.game,depth, float('-inf'), float('inf'), self.maximizer)
-            return move[1]
+            end_time = time.time()
+            time_spent = end_time -self.start_time
+            return (move[0], move[1], time_spent) # heuristic score of the search, move, time_spent on the search
         else: 
             #return self.minimax(game_state=copy_state,depth = depth, maximizing_player=True) # Call for minimax with maximizing at the turn of the Ai
             move = self.minimax(self.game, depth, self.maximizer)
-            return move[1]
+            end_time = time.time()
+            time_spent = end_time - self.start_time #Get time spent on the search
+            return (move[0], move[1], time_spent) # heuristic score of the search, move, time spent on the search
         
 
     def minimax(self, game_state , depth: int, maximizing_player: bool):
@@ -47,7 +51,7 @@ class SearchAlgorithm:
             exit(1)
         
         if depth == 0 or self.game.is_game_over(): # check if we're at depth 0 or if the game is over or not
-            return self.evaluation_score(game_state), None # returns the heuristic score
+            return self.evaluation_score(game_state), None # returns the heuristic score, best_move = none
 
         best_move = None
         valid_moves = game_state.valid_moves(game_state.current_game_state) # Get all valid moves of the current state

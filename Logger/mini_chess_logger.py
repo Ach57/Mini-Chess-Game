@@ -43,7 +43,7 @@ class MiniChessLogger:
                 file.write(' '.join(row) + "\n")
             file.write("\n")
 
-    def log_move(self, player, move, ai_time=None, heuristic_score=None, alpha_beta_score=None, valid=True):
+    def log_move(self, player, move, ai_time=None, heuristic_score=None, alpha_beta_score=None, mini_max_score = None,valid=True):
         """Log each move taken by human or AI."""
         if valid: 
             self.move_count += 1  # Increment turn count
@@ -60,9 +60,11 @@ class MiniChessLogger:
             file.write(f"Turn #{self.move_count}: {player} moves {move_str}\n")
 
             if ai_time is not None:
-                file.write(f"AI move time: {ai_time:.2f} sec\n")
+                file.write(f"AI move time: {ai_time:.3f} sec\n")
             if heuristic_score is not None:
                 file.write(f"Heuristic Score: {heuristic_score}\n")
+            if mini_max_score is not None:
+                file.write(f"MiniMax Search Score: {mini_max_score}\n")
             if alpha_beta_score is not None:
                 file.write(f"Alpha-Beta Search Score: {alpha_beta_score}\n")
 

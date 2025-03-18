@@ -279,7 +279,8 @@ class MiniChess:
         #Game Starts here
         while True:
             self.display_board(self.current_game_state) # Dislay board 
-            
+            time_spent = ""
+            resulting_heuristic = ""
             if self.current_game_state["turn"] == "white": # Human Starts with white turn
                 
                 move = input("White Your move: ").upper()
@@ -290,25 +291,36 @@ class MiniChess:
                     
                 move = self.parse_input(move) # Get the move using parse_input
             else:    
-                move = self.search_algorithm.search_best_move(3) # Make AI move
+                resulting_heuristic, move, time_spent = self.search_algorithm.search_best_move(3) # Make AI move
                 print(f"Black AI Move: {move}")
 
             if move and self.is_valid_move(self.current_game_state, move):
-                if self.player1_type =="Human":
-                    self.logger.log_move(player=self.current_game_state['turn'], move=move)
-                if self.player2_type =="AI":
-                    self.logger.log_move()
+                if self.player1_type =="Human" and self.current_game_state['turn'] =="white":
+                    self.logger.log_move(player=self.current_game_state['turn'], move=move) # Log Human move
+                    
+                if self.player2_type =="AI" and self.current_game_state['turn'] =="black":
+                    if self.alpha_beta:
+                        self.logger.log_move(player="AI",move=move,
+                                             ai_time= time_spent, alpha_beta_score=resulting_heuristic, 
+                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+                    else:
+                        self.logger.log_move(player="AI",move=move,ai_time= time_spent,
+                                             mini_max_score=resulting_heuristic,
+                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
                 self.make_move(self.current_game_state, move)
             else:
                 print("Invalid move.")
+                self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
 
     def Ai_vs_player_play(self):
         """Handles an AI vs. Human game loop."""
         self.search_algorithm = SearchAlgorithm(self, self.heuristic, self.alpha_beta, self.timeout, maximizier=True)  # ✅ Ensure AI is initialized
         while True:
             self.display_board(self.current_game_state)
+            resulting_heuristic =""
+            time_spent =""
             if self.current_game_state["turn"] == "white":  # AI moves first
-                move = self.search_algorithm.search_best_move(3)
+                resulting_heuristic, move, time_spent = self.search_algorithm.search_best_move(3)
                 print(f"AI Move: {move}")
             else:  # Human plays
                 move = input("Black move: ").upper()
@@ -321,6 +333,18 @@ class MiniChess:
                 move = self.parse_input(move)
 
             if move and self.is_valid_move(self.current_game_state, move):
+                if self.player2_type =="Human" and self.current_game_state['turn']== "black":
+                    self.logger.log_move(player=self.current_game_state['turn'], move=move) # Log Human move
+                
+                if self.player1_type =="AI" and self.current_game_state['turn'] =="white":
+                    if self.alpha_beta:
+                        self.logger.log_move(player="AI",move=move,
+                                             ai_time= time_spent, alpha_beta_score=resulting_heuristic, 
+                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+                    else:
+                        self.logger.log_move(player="AI",move=move,ai_time= time_spent,
+                                             mini_max_score=resulting_heuristic,
+                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
                 self.make_move(self.current_game_state, move)
             else:
                 print("Invalid move.")
@@ -334,14 +358,38 @@ class MiniChess:
             if self.current_game_state['turn'] =="white":
                 self.search_algorithm.heuristic = heuristic[0]
                 self.search_algorithm.alpha_beta = self.alpha_beta[0]
-                move = self.search_algorithm.search_best_move(3)
+                resulting_heuristic1, move, time_spent1 = self.search_algorithm.search_best_move(3)
             else:
                 self.search_algorithm.heuristic = heuristic[1]
                 self.search_algorithm.alpha_beta = self.alpha_beta[1]
-                move = self.search_algorithm.search_best_move(3)
+                heuristic_score2, move, time_spent2 = self.search_algorithm.search_best_move(3)
                 
             if move:
+                if self.player1_type =="AI" and self.current_game_state['turn'] =='white':
+                    
+                    if self.alpha_beta:
+                        self.logger.log_move(player="AI",move=move,
+                                             ai_time= time_spent1, alpha_beta_score=resulting_heuristic1, 
+                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+                    else:
+                        self.logger.log_move(player="AI",move=move,ai_time= time_spent1,
+                                             mini_max_score=resulting_heuristic1,
+                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+                
+                if self.player2_type =="AI" and self.current_game_state['turn'] =='black':
+                    
+                    if self.alpha_beta:
+                        self.logger.log_move(player="AI",move=move,
+                                             ai_time= time_spent2, alpha_beta_score=heuristic_score2, 
+                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+                    else:
+                        self.logger.log_move(player="AI",move=move,ai_time= time_spent2,
+                                             mini_max_score=heuristic_score2,
+                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+            
+            
                 self.make_move(self.current_game_state, move)
+                
             else:
                 print(f"{self.current_game_state['turn']} AI has no valid moves. Game over.")
                 break
