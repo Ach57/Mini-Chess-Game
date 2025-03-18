@@ -271,6 +271,7 @@ class MiniChess:
             else:
                 print("Invalid move.")
                 self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
+                    
 
     def player_vs_Ai_play(self, heuristic):
         """Handles a human vs. AI game loop."""
@@ -311,6 +312,10 @@ class MiniChess:
             else:
                 print("Invalid move.")
                 self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
+                if self.current_game_state['turn'] == "black" and self.player2_type=="AI" and move is None:
+                    print("AI message: I give up :(")
+                    self.logger.log_winner("black")
+                    break
 
     def Ai_vs_player_play(self):
         """Handles an AI vs. Human game loop."""
@@ -348,6 +353,11 @@ class MiniChess:
                 self.make_move(self.current_game_state, move)
             else:
                 print("Invalid move.")
+                self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
+                if self.current_game_state['turn'] =="white" and self.player1_type =="AI" and move is None:
+                    print("AI Message: I give up :(")
+                    self.logger.log_winner("black")
+                    break
                 
     def Ai_vs_Ai_play(self, heuristic):
         """Handles an AI vs. AI game loop."""
@@ -357,12 +367,14 @@ class MiniChess:
             self.display_board(self.current_game_state)
             if self.current_game_state['turn'] =="white":
                 self.search_algorithm.heuristic = heuristic[0]
-                self.search_algorithm.alpha_beta = self.alpha_beta[0]
+                self.search_algorithm.alpha_beta = self.alpha_beta
                 resulting_heuristic1, move, time_spent1 = self.search_algorithm.search_best_move(3)
+                print(f"AI_1 Move: {move}")
             else:
                 self.search_algorithm.heuristic = heuristic[1]
-                self.search_algorithm.alpha_beta = self.alpha_beta[1]
+                self.search_algorithm.alpha_beta = self.alpha_beta
                 heuristic_score2, move, time_spent2 = self.search_algorithm.search_best_move(3)
+                print(f"AI_2 Move: {move}")
                 
             if move:
                 if self.player1_type =="AI" and self.current_game_state['turn'] =='white':
@@ -392,6 +404,7 @@ class MiniChess:
                 
             else:
                 print(f"{self.current_game_state['turn']} AI has no valid moves. Game over.")
+                self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
                 break
 
 if __name__ == "__main__":
