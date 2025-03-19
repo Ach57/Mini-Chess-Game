@@ -210,7 +210,7 @@ class MiniChess:
 
         return moves
 
-    def make_move(self, game_state, move):
+    def make_move(self, game_state, move, cumulative_sum =None, state_by_depth = None):
         """Executes a move and handles game updates."""
         start, end = move
         piece = game_state["board"][start[0]][start[1]]
@@ -224,11 +224,32 @@ class MiniChess:
             self.display_board(self.current_game_state)
             print("White Wins!")
             self.logger.log_winner("White")
+            
+            if cumulative_sum is not None and state_by_depth is not None: # Log AI stats at the end of the game
+                if isinstance(cumulative_sum, tuple) and isinstance(state_by_depth, tuple):
+                    self.logger.log_ai_stats(cumulative_sum[0], state_by_depth[0])    
+                    self.logger.log_ai_stats(cumulative_sum[1], state_by_depth[1])   
+                    
+                
+                if isinstance(cumulative_sum, int):
+                    self.logger.log_ai_stats(cumulative_sum, state_by_depth)
             exit(0)
+            
         elif not any("wK" in row for row in game_state["board"]):
             self.display_board(self.current_game_state)
             print("Black Wins!")
             self.logger.log_winner("Black")
+            
+            if cumulative_sum is not None and state_by_depth is not None:
+                
+                if isinstance(cumulative_sum, tuple) and isinstance(state_by_depth, tuple):
+                    self.logger.log_ai_stats(cumulative_sum[0], state_by_depth[0])    
+                    self.logger.log_ai_stats(cumulative_sum[1], state_by_depth[1])   
+                    exit(0)
+                
+                if isinstance(cumulative_sum, int):
+                    self.logger.log_ai_stats(cumulative_sum, state_by_depth)
+                    exit(0)
             exit(0)
 
         game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
@@ -308,13 +329,14 @@ class MiniChess:
                         self.logger.log_move(player="AI",move=move,ai_time= time_spent,
                                              mini_max_score=resulting_heuristic,
                                              heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
-                self.make_move(self.current_game_state, move)
+                self.make_move(self.current_game_state, move , cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth= self.search_algorithm.state_by_depth)
             else:
                 print("Invalid move.")
                 self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
                 if self.current_game_state['turn'] == "black" and self.player2_type=="AI" and move is None:
                     print("AI message: I give up :(")
                     self.logger.log_winner("black")
+                    self.logger.log_ai_stats(self.search_algorithm.cumulative_count, self.search_algorithm.state_by_depth)
                     break
 
     def Ai_vs_player_play(self):
@@ -350,30 +372,32 @@ class MiniChess:
                         self.logger.log_move(player="AI",move=move,ai_time= time_spent,
                                              mini_max_score=resulting_heuristic,
                                              heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
-                self.make_move(self.current_game_state, move)
+                self.make_move(self.current_game_state, move, cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth=self.search_algorithm.state_by_depth)
             else:
                 print("Invalid move.")
                 self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
                 if self.current_game_state['turn'] =="white" and self.player1_type =="AI" and move is None:
                     print("AI Message: I give up :(")
                     self.logger.log_winner("black")
+                    self.logger.log_ai_stats(self.search_algorithm.cumulative_count, self.search_algorithm.state_by_depth)
                     break
                 
     def Ai_vs_Ai_play(self, heuristic):
         """Handles an AI vs. AI game loop."""
-        self.search_algorithm = SearchAlgorithm(self, self.alpha_beta, self.timeout)  # ✅ Ensure AI is initialized
+        self.search_algorithm_1 = SearchAlgorithm(self, self.alpha_beta, self.timeout) 
+        self.search_algorithm_2 = SearchAlgorithm(self, self.alpha_beta, self.timeout)
         
         while True:
             self.display_board(self.current_game_state)
             if self.current_game_state['turn'] =="white":
-                self.search_algorithm.heuristic = heuristic[0]
-                self.search_algorithm.alpha_beta = self.alpha_beta
-                resulting_heuristic1, move, time_spent1 = self.search_algorithm.search_best_move(3)
+                self.search_algorithm_1.heuristic = heuristic[0]
+                self.search_algorithm_1.alpha_beta = self.alpha_beta
+                resulting_heuristic1, move, time_spent1 = self.search_algorithm_1.search_best_move(3)
                 print(f"AI_1 Move: {move}")
             else:
-                self.search_algorithm.heuristic = heuristic[1]
-                self.search_algorithm.alpha_beta = self.alpha_beta
-                heuristic_score2, move, time_spent2 = self.search_algorithm.search_best_move(3)
+                self.search_algorithm_2.heuristic = heuristic[1]
+                self.search_algorithm_2.alpha_beta = self.alpha_beta
+                heuristic_score2, move, time_spent2 = self.search_algorithm_2.search_best_move(3)
                 print(f"AI_2 Move: {move}")
                 
             if move:
@@ -382,29 +406,33 @@ class MiniChess:
                     if self.alpha_beta:
                         self.logger.log_move(player="AI",move=move,
                                              ai_time= time_spent1, alpha_beta_score=resulting_heuristic1, 
-                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+                                             heuristic_score=self.search_algorithm_1.evaluation_score(current_state=self) ) # log AI move
                     else:
                         self.logger.log_move(player="AI",move=move,ai_time= time_spent1,
                                              mini_max_score=resulting_heuristic1,
-                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+                                             heuristic_score=self.search_algorithm_2.evaluation_score(current_state=self) ) # log AI move
                 
                 if self.player2_type =="AI" and self.current_game_state['turn'] =='black':
                     
                     if self.alpha_beta:
                         self.logger.log_move(player="AI",move=move,
                                              ai_time= time_spent2, alpha_beta_score=heuristic_score2, 
-                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+                                             heuristic_score=self.search_algorithm_1.evaluation_score(current_state=self) ) # log AI move
                     else:
                         self.logger.log_move(player="AI",move=move,ai_time= time_spent2,
                                              mini_max_score=heuristic_score2,
-                                             heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
+                                             heuristic_score=self.search_algorithm_2.evaluation_score(current_state=self) ) # log AI move
             
-            
-                self.make_move(self.current_game_state, move)
+                self.make_move(self.current_game_state, move, 
+                               cumulative_sum= (self.search_algorithm_1.cumulative_count, self.search_algorithm_2.cumulative_count),
+                               state_by_depth=(self.search_algorithm_1.state_by_depth, self.search_algorithm_2.state_by_depth))
                 
             else:
                 print(f"{self.current_game_state['turn']} AI has no valid moves. Game over.")
                 self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
+                # Log stats if game goes to shit
+                self.logger.log_ai_stats(states_explored= self.search_algorithm_1.cumulative_count, depth_exploration=self.search_algorithm_1.state_by_depth)
+                self.logger.log_ai_stats(states_explored=self.search_algorithm_2.cumulative_count, depth_exploration=self.search_algorithm_2.state_by_depth)
                 break
 
 if __name__ == "__main__":

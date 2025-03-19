@@ -17,8 +17,6 @@ class MiniChessLogger:
         self.max_turns = max_turns
         self.log_file = f"gameTrace-{str(alpha_beta).lower()}-{timeout}-{max_turns}.txt"
         self.move_count = 0  # Track total moves
-        self.states_explored = 0  # Total number of states explored by AI
-        self.depth_exploration = {}  # Dictionary to track depth-wise state exploration
         self.player1_type = player1_type
         self.player2_type = player2_type
         self.heuristic1 = heuristic1
@@ -70,37 +68,37 @@ class MiniChessLogger:
 
             file.write("\n")
 
-    def log_ai_stats(self):
+    def log_ai_stats(self, states_explored:int, depth_exploration:dict):
         """Log AI search statistics (states explored, depth breakdown, branching factor)."""
         with open(self.log_file, 'a') as file:
             file.write("Cumulative AI Search Statistics:\n")
-            file.write(f"Total states explored: {self.states_explored}\n")
+            file.write(f"Cumulative States Explored: {states_explored}\n")
 
             # Log exploration by depth
             file.write("Cumulative states explored by depth:\n")
-            total_states = sum(self.depth_exploration.values())
+            total_states = sum(depth_exploration.values())
 
-            for depth, count in sorted(self.depth_exploration.items()):
+            for depth, count in sorted(depth_exploration.items()):
                 file.write(f"Depth {depth}: {count} states\n")
 
             # Log percentage of states explored per depth
             file.write("Cumulative % states explored by depth:\n")
-            for depth, count in sorted(self.depth_exploration.items()):
+            for depth, count in sorted(depth_exploration.items()):
                 percentage = (count / total_states) * 100 if total_states > 0 else 0
                 file.write(f"Depth {depth}: {percentage:.2f}%\n")
 
             # Log average branching factor
-            avg_branch_factor = self.compute_branching_factor()
+            avg_branch_factor = self.compute_branching_factor(depth_exploration)
             file.write(f"Average Branching Factor: {avg_branch_factor:.2f}\n\n")
 
-    def compute_branching_factor(self):
+    def compute_branching_factor(self, depth_exploration):
         """Calculate the average branching factor based on depth exploration data."""
-        if len(self.depth_exploration) < 2:
+        if len(depth_exploration) < 2:
             return 0
 
-        depths = sorted(self.depth_exploration.keys())
-        total_expanded = sum(self.depth_exploration[d] for d in depths[1:])
-        total_parent_nodes = sum(self.depth_exploration[d] for d in depths[:-1])
+        depths = sorted(depth_exploration.keys())
+        total_expanded = sum(depth_exploration[d] for d in depths[1:])
+        total_parent_nodes = sum(depth_exploration[d] for d in depths[:-1])
 
         return total_expanded / total_parent_nodes if total_parent_nodes > 0 else 0
 

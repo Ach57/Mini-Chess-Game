@@ -1,6 +1,7 @@
 import copy
 import time
 from heuristics.heuristics import get_pieces_count
+from  collections import defaultdict
 
 class SearchAlgorithm:
     def __init__(self, game, heuristic, alpha_beta:bool=True, max_time:int=5, maximizier:bool=True) ->None:
@@ -19,6 +20,8 @@ class SearchAlgorithm:
         self.max_time = max_time  # Time limit for AI move computation
         self.start_time = None  # Track the start time for time management
         self.maximizer = maximizier
+        self.cumulative_count = 0
+        self.state_by_depth = defaultdict(int)
     
     def search_best_move(self, depth):
         """
@@ -51,6 +54,8 @@ class SearchAlgorithm:
             exit(1)
         
         if depth == 0 or self.game.is_game_over(): # check if we're at depth 0 or if the game is over or not
+            self.cumulative_count+=1
+            
             return self.evaluation_score(game_state), None # returns the heuristic score, best_move = none
 
         best_move = None
@@ -61,7 +66,7 @@ class SearchAlgorithm:
             for move in valid_moves:
                 new_state = copy.deepcopy(game_state)
                 new_state.ai_make_move(new_state.current_game_state, move)
-                
+                self.state_by_depth[depth]+=1
                 eval_score, _ = self.minimax(new_state, depth-1, False)
                 
                 if eval_score>max_eval:
@@ -74,13 +79,14 @@ class SearchAlgorithm:
             for move in valid_moves:
                 new_state = copy.deepcopy(game_state)
                 new_state.ai_make_move(new_state.current_game_state, move)
+                self.state_by_depth[depth]+=1
                 eval_score, _ = self.minimax(new_state,depth-1, True)
                 if eval_score< min_eval:
                     
                     min_eval = eval_score
                     best_move = move
                 
-            return min_eval, best_move
+            return min_eval, best_move 
         
     """
     Implements Alpha-Beta Pruning to optimize Minimax.
@@ -103,6 +109,7 @@ class SearchAlgorithm:
 
         # Base case: If depth = 0 or game is over, evaluate the board.
         if depth == 0 or self.game.is_game_over():
+            self.cumulative_count +=1
             return self.evaluation_score(game_state), None
 
         best_move = None
@@ -113,7 +120,7 @@ class SearchAlgorithm:
             for move in valid_moves:
                 new_state = copy.deepcopy(game_state)
                 new_state.ai_make_move(new_state.current_game_state, move)
-
+                self.state_by_depth[depth]+=1
                 eval_score, _ = self.alpha_beta_pruning(new_state,depth - 1, alpha, beta, False)
 
                 if eval_score > max_eval:
@@ -132,7 +139,7 @@ class SearchAlgorithm:
             for move in valid_moves:
                 new_state = copy.deepcopy(game_state)
                 new_state.ai_make_move(new_state.current_game_state, move)
-
+                self.state_by_depth[depth]+=1
                 eval_score, _ = self.alpha_beta_pruning(new_state,depth - 1, alpha, beta, True)
 
                 if eval_score < min_eval:
