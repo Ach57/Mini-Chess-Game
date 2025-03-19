@@ -410,14 +410,14 @@ class MiniChess:
                     else:
                         self.logger.log_move(player="AI",move=move,ai_time= time_spent1,
                                              mini_max_score=resulting_heuristic1,
-                                             heuristic_score=self.search_algorithm_2.evaluation_score(current_state=self) ) # log AI move
+                                             heuristic_score=self.search_algorithm_1.evaluation_score(current_state=self) ) # log AI move
                 
                 if self.player2_type =="AI" and self.current_game_state['turn'] =='black':
                     
                     if self.alpha_beta:
                         self.logger.log_move(player="AI",move=move,
                                              ai_time= time_spent2, alpha_beta_score=heuristic_score2, 
-                                             heuristic_score=self.search_algorithm_1.evaluation_score(current_state=self) ) # log AI move
+                                             heuristic_score=self.search_algorithm_2.evaluation_score(current_state=self) ) # log AI move
                     else:
                         self.logger.log_move(player="AI",move=move,ai_time= time_spent2,
                                              mini_max_score=heuristic_score2,

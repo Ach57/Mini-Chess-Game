@@ -1,0 +1,95 @@
+Mini Chess Game Trace
+Alpha-Beta Pruning: OFF
+Timeout per move: 5 seconds
+Max turns: 100
+Player 1: AI (Alpha-Beta ON, Heuristic: e2)
+Player 2: AI (Alpha-Beta ON, Heuristic: e0)
+
+Initial Board Configuration:
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+
+Turn #1: AI moves D1 to D2
+AI move time: 0.164 sec
+Heuristic Score: 0
+MiniMax Search Score: 24
+
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp wQ .
+. wN wB . wK
+
+Turn #2: AI moves A5 to A4
+AI move time: 0.091 sec
+Heuristic Score: 0
+MiniMax Search Score: 0
+
+. bQ bB bN .
+bK . bp bp .
+. . . . .
+. wp wp wQ .
+. wN wB . wK
+
+Turn #3: AI moves B2 to B3
+AI move time: 0.174 sec
+Heuristic Score: -16
+MiniMax Search Score: 35
+
+. bQ bB bN .
+bK . bp bp .
+. wp . . .
+. . wp wQ .
+. wN wB . wK
+
+Turn #4: AI moves B5 to A5
+AI move time: 0.135 sec
+Heuristic Score: 0
+MiniMax Search Score: 0
+
+bQ . bB bN .
+bK . bp bp .
+. wp . . .
+. . wp wQ .
+. wN wB . wK
+
+Turn #5: AI moves B3 to A4
+AI move time: 0.260 sec
+Heuristic Score: -12
+MiniMax Search Score: 989
+
+bQ . bB bN .
+wp . bp bp .
+. . . . .
+. . wp wQ .
+. wN wB . wK
+
+Game Over: White wins in 2 turns
+
+Cumulative AI Search Statistics:
+Cumulative States Explored: 10610
+Cumulative states explored by depth:
+Depth 1: 10610 states
+Depth 2: 653 states
+Depth 3: 45 states
+Cumulative % states explored by depth:
+Depth 1: 93.83%
+Depth 2: 5.77%
+Depth 3: 0.40%
+Average Branching Factor: 0.06
+
+Cumulative AI Search Statistics:
+Cumulative States Explored: 6230
+Cumulative states explored by depth:
+Depth 1: 6230 states
+Depth 2: 421 states
+Depth 3: 28 states
+Cumulative % states explored by depth:
+Depth 1: 93.28%
+Depth 2: 6.30%
+Depth 3: 0.42%
+Average Branching Factor: 0.07
+

@@ -1,0 +1,14 @@
+Mini Chess Game Trace
+Alpha-Beta Pruning: OFF
+Timeout per move: 5 seconds
+Max turns: 10
+Player 1: AI (Alpha-Beta ON, Heuristic: e2)
+Player 2: AI (Alpha-Beta ON, Heuristic: e0)
+
+Initial Board Configuration:
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+
