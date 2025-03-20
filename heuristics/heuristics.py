@@ -186,12 +186,15 @@ def e2(piece_count: dict, game_state: dict ) ->int:
         rows, cols = len(board), len(board[0])
     
         for dx, dy in directions:
-            for step in range(1, 5):  # Move as far as possible
-                new_x, new_y = x + dx * step, y + dy * step
-                if 0 <= new_x < rows and 0 <= new_y < cols:
+            for step in range(1, 5):
+                new_x, new_y = x+dx*step, y+dy*step
+                if 0<= new_x<rows and 0<= new_y<cols:
                     target_piece = board[new_x][new_y]
-                    if target_piece!= '.' and target_piece[0]!=turn:
+                    if target_piece !="." and target_piece[0] != turn[0]: # we shouldn't get the empty pos
                         moves.append((new_x, new_y))
+                        break
+                    elif target_piece!= ".":
+                        break
         return moves
         
         
@@ -225,6 +228,9 @@ def e2(piece_count: dict, game_state: dict ) ->int:
                     target_piece = board[new_x][new_y]
                     if target_piece!='.' and target_piece[0]!= turn:
                         moves.append((new_x, new_y)) 
+                        break
+                    elif target_piece!= ".":
+                        break
         return moves
     
     def get_capturing_pos_king(position: tuple, turn: str):
