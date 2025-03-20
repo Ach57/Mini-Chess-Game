@@ -103,11 +103,11 @@ def e1(pieces_count: dict, game_state:dict) ->int:
     }
     
     bonus_point_distribution = {
-        'p': 8, # when the pawn is about to be promoted to queen
-        'B': 3,
-        "N": 3,
-        "Q":7,
-        "K": 6
+        'p': 10, # when the pawn is about to be promoted to queen
+        'B': 4,
+        "N": 4,
+        "Q":9,
+        "K": 8
     }
     
     def calculate_position_bonus(piece:str,color: str ,game_state:dict) ->int:
@@ -159,11 +159,11 @@ def e2(piece_count: dict, game_state: dict ) ->int:
         int: heuristic value
     """
     piece_capture_point = {
-        'p': 1,    # Pawn value
-        'B': 3,    # Bishop value
-        'N': 3,    # Knight value
-        'Q': 9,    # Queen value
-        'K': 12   # King value
+        'p': 2,    # Pawn value
+        'B': 4,    # Bishop value
+        'N': 4,    # Knight value
+        'Q': 10,    # Queen value
+        'K': 20   # King value
     }
     
     board = game_state['board']
@@ -286,32 +286,4 @@ def e2(piece_count: dict, game_state: dict ) ->int:
 
     return score                
                 
-                
-    
-
-
-
-
-
-
-if __name__=="__main__":
-    game_state = {
-                "board": 
-                [['bK', 'bQ', 'bB', 'bN', '.'],
-                ['.', '.', 'bp', '.', '.'],
-                ['.', 'wp', '.', '.', '.'],
-                ['.', '.', 'wp', 'bp', '.'],
-                ['.', 'wN', 'wB', 'wQ', 'wK']],
-                "turn": 'white',
-    }
-    
-    
-    #print(e0(get_pieces_count(game_state)))
-    
-    #print(e1(get_pieces_count(game_state), game_state))
-    
-    print(e2(get_pieces_count(game_state), game_state))
-    
-    
-    
     

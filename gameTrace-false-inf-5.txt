@@ -1,0 +1,176 @@
+Mini Chess Game Trace
+Alpha-Beta Pruning: OFF
+Timeout per move: inf seconds
+Max turns: 5
+Player 1: Human 
+Player 2: Human 
+
+Initial Board Configuration:
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+
+Turn #1: black moves B2 to B3
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+Turn #2: white moves C4 to C3
+
+bK bQ bB bN .
+. . . bp .
+. wp bp . .
+. . wp . .
+. wN wB wQ wK
+
+Turn #3: black moves E1 to E2
+
+bK bQ bB bN .
+. . . bp .
+. wp bp . .
+. . wp . wK
+. wN wB wQ .
+
+Turn #4: white moves A5 to A4
+
+. bQ bB bN .
+bK . . bp .
+. wp bp . .
+. . wp . wK
+. wN wB wQ .
+
+Turn #5: black moves E2 to E1
+
+. bQ bB bN .
+bK . . bp .
+. wp bp . .
+. . wp . .
+. wN wB wQ wK
+
+Turn #6: white moves B5 to B4
+
+. . bB bN .
+bK bQ . bp .
+. wp bp . .
+. . wp . .
+. wN wB wQ wK
+
+Turn #7: black moves E1 to E2
+
+. . bB bN .
+bK bQ . bp .
+. wp bp . .
+. . wp . wK
+. wN wB wQ .
+
+Turn #8: white moves A4 to A5
+
+bK . bB bN .
+. bQ . bp .
+. wp bp . .
+. . wp . wK
+. wN wB wQ .
+
+Invalid move made by white at turn #8
+bK . bB bN .
+. bQ . bp .
+. wp bp . .
+. . wp . wK
+. wN wB wQ .
+
+Turn #9: black moves D1 to D2
+
+bK . bB bN .
+. bQ . bp .
+. wp bp . .
+. . wp wQ wK
+. wN wB . .
+
+Turn #10: white moves A5 to A4
+
+. . bB bN .
+bK bQ . bp .
+. wp bp . .
+. . wp wQ wK
+. wN wB . .
+
+Turn #11: black moves E2 to E1
+
+. . bB bN .
+bK bQ . bp .
+. wp bp . .
+. . wp wQ .
+. wN wB . wK
+
+Turn #12: white moves A4 to A5
+
+bK . bB bN .
+. bQ . bp .
+. wp bp . .
+. . wp wQ .
+. wN wB . wK
+
+Turn #13: black moves E1 to E2
+
+bK . bB bN .
+. bQ . bp .
+. wp bp . .
+. . wp wQ wK
+. wN wB . .
+
+Turn #14: white moves A5 to A4
+
+. . bB bN .
+bK bQ . bp .
+. wp bp . .
+. . wp wQ wK
+. wN wB . .
+
+Turn #15: black moves D2 to E3
+
+. . bB bN .
+bK bQ . bp .
+. wp bp . wQ
+. . wp . wK
+. wN wB . .
+
+Turn #16: white moves A4 to A3
+
+. . bB bN .
+. bQ . bp .
+bK wp bp . wQ
+. . wp . wK
+. wN wB . .
+
+Turn #17: black moves E2 to D1
+
+. . bB bN .
+. bQ . bp .
+bK wp bp . wQ
+. . wp . .
+. wN wB wK .
+
+Turn #18: white moves A3 to A2
+
+. . bB bN .
+. bQ . bp .
+. wp bp . wQ
+bK . wp . .
+. wN wB wK .
+
+Turn #19: black moves D1 to E1
+
+. . bB bN .
+. bQ . bp .
+. wp bp . wQ
+bK . wp . .
+. wN wB . wK
+
+Turn #20: white moves B4 to B5
+
+Draw! No piece was modified after 10 turns.

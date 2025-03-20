@@ -274,6 +274,23 @@ class MiniChess:
         except:
             return None
 
+    def check_draw_condition(self, game_state:dict) ->int:
+        """_summary_
+
+        Args:
+            game_state (dict): Current game state
+
+        Returns:
+            int: returns if  the number of pieces is still the same or not
+        """
+        board = game_state['board']
+        piece_count = 0
+        for row in range(5):
+            for col in range(5):
+                if board[row][col] !="." :
+                    piece_count+=1
+        return piece_count == 12
+    
     def player_vs_player_play(self):
         """Handles a human vs. human game loop."""
         self.logger.start_logging()
@@ -289,6 +306,14 @@ class MiniChess:
             if move and self.is_valid_move(self.current_game_state, move):
                 self.make_move(self.current_game_state, move)
                 self.logger.log_move(player=self.current_game_state['turn'], move=move)
+                self.turn_count+=1 # add 1 to the number of turn_count
+                # Check for draw condition
+                if self.turn_count //2 ==10: 
+                    if self.check_draw_condition(self.current_game_state):
+                        self.display_board(self.current_game_state)
+                        print("Draw! No piece has been moved after 10 turns.")
+                        self.logger.log_info("Draw! No piece was modified after 10 turns.")
+                        break
             else:
                 print("Invalid move.")
                 self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
@@ -330,6 +355,15 @@ class MiniChess:
                                              mini_max_score=resulting_heuristic,
                                              heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
                 self.make_move(self.current_game_state, move , cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth= self.search_algorithm.state_by_depth)
+                
+                self.turn_count+=1 # add 1 to the number of turn_count
+                # Check for draw condition
+                if self.turn_count //2 ==10: 
+                    if self.check_draw_condition(self.current_game_state):
+                        self.display_board(self.current_game_state)
+                        print("Draw! No piece has been moved after 10 turns.")
+                        self.logger.log_info("Draw! No piece was modified after 10 turns.")
+                        break
             else:
                 print("Invalid move.")
                 self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
@@ -373,6 +407,16 @@ class MiniChess:
                                              mini_max_score=resulting_heuristic,
                                              heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
                 self.make_move(self.current_game_state, move, cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth=self.search_algorithm.state_by_depth)
+                
+                self.turn_count+=1 # add 1 to the number of turn_count
+                # Check for draw condition
+                if self.turn_count //2 ==10: 
+                    if self.check_draw_condition(self.current_game_state):
+                        self.display_board(self.current_game_state)
+                        print("Draw! No piece has been moved after 10 turns.")
+                        self.logger.log_info("Draw! No piece was modified after 10 turns.")
+                        break
+            
             else:
                 print("Invalid move.")
                 self.logger.log_move(player=self.current_game_state['turn'], move=move, valid=False)
@@ -426,6 +470,15 @@ class MiniChess:
                 self.make_move(self.current_game_state, move, 
                                cumulative_sum= (self.search_algorithm_1.cumulative_count, self.search_algorithm_2.cumulative_count),
                                state_by_depth=(self.search_algorithm_1.state_by_depth, self.search_algorithm_2.state_by_depth))
+                
+                self.turn_count+=1 # add 1 to the number of turn_count
+                # Check for draw condition
+                if self.turn_count //2 ==10: 
+                    if self.check_draw_condition(self.current_game_state):
+                        self.display_board(self.current_game_state)
+                        print("Draw! No piece has been moved after 10 turns.")
+                        self.logger.log_info("Draw! No piece was modified after 10 turns.")
+                        break
                 
             else:
                 print(f"{self.current_game_state['turn']} AI has no valid moves. Game over.")
