@@ -1,0 +1,48 @@
+Mini Chess Game Trace
+Alpha-Beta Pruning: OFF
+Timeout per move: 5 seconds
+Max turns: 1
+Player 1: AI (Alpha-Beta ON, Heuristic: e2)
+Player 2: AI (Alpha-Beta ON, Heuristic: e1)
+
+Initial Board Configuration:
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+
+Turn #1: AI moves D1 to D4
+AI move time: 0.166 sec
+Heuristic Score: 0
+MiniMax Search Score: 28
+
+bK bQ bB bN .
+. . bp wQ .
+. . . . .
+. wp wp . .
+. wN wB . wK
+
+Turn #2: AI moves A5 to A4
+AI move time: 0.144 sec
+Heuristic Score: 1
+MiniMax Search Score: 1
+
+. bQ bB bN .
+bK . bp wQ .
+. . . . .
+. wp wp . .
+. wN wB . wK
+
+Turn #3: AI moves B1 to C3
+AI move time: 0.289 sec
+Heuristic Score: 51
+MiniMax Search Score: 62
+
+. bQ bB bN .
+bK . bp wQ .
+. . wN . .
+. wp wp . .
+. . wB . wK
+
+Maximum Turns exceeded. Game ends

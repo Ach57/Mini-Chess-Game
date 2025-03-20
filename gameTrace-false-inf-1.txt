@@ -1,0 +1,39 @@
+Mini Chess Game Trace
+Alpha-Beta Pruning: OFF
+Timeout per move: inf seconds
+Max turns: 1
+Player 1: Human 
+Player 2: Human 
+
+Initial Board Configuration:
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+
+Turn #1: black moves B2 to B3
+
+bK bQ bB bN .
+. . bp bp .
+. wp . . .
+. . wp . .
+. wN wB wQ wK
+
+Turn #2: white moves C4 to C3
+
+bK bQ bB bN .
+. . . bp .
+. wp bp . .
+. . wp . .
+. wN wB wQ wK
+
+Turn #3: black moves D1 to D4
+
+bK bQ bB bN .
+. . . wQ .
+. wp bp . .
+. . wp . .
+. wN wB . wK
+
+Maximum Turns exceeded. Game ends

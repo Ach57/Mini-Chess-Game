@@ -151,7 +151,7 @@ class MiniChess:
             elif player1_type=="Human" and player2_type =="AI":
                 self.logger = MiniChessLogger(alpha_beta, timeout, max_turns, player1_type, player2_type, heuristic1=None, heuristic2=heuristic_map[heuristic])
         
-        self.turn_count = 0  # Track number of turns for draw condition
+        self.turn_count = 1  # Track number of turns for draw condition
         self.piece_count_history = [] 
         self.max_turns = max_turns
         self.timeout = timeout
@@ -307,6 +307,13 @@ class MiniChess:
                 self.make_move(self.current_game_state, move)
                 self.logger.log_move(player=self.current_game_state['turn'], move=move)
                 self.turn_count+=1 # add 1 to the number of turn_count
+                
+                if self.max_turns < (self.turn_count //2):
+                    self.display_board(self.current_game_state)
+                    self.logger.log_info("Maximum Turns exceeded. Game ends")
+                    print("Maximum Turns exceeded. Game ends.")
+                    break
+                
                 # Check for draw condition
                 if self.turn_count //2 ==10: 
                     if self.check_draw_condition(self.current_game_state):
@@ -357,6 +364,13 @@ class MiniChess:
                 self.make_move(self.current_game_state, move , cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth= self.search_algorithm.state_by_depth)
                 
                 self.turn_count+=1 # add 1 to the number of turn_count
+                
+                if self.max_turns < (self.turn_count //2):
+                    self.display_board(self.current_game_state)
+                    self.logger.log_info("Maximum Turns exceeded. Game ends")
+                    print("Maximum Turns exceeded. Game ends.")
+                    break
+                
                 # Check for draw condition
                 if self.turn_count //2 ==10: 
                     if self.check_draw_condition(self.current_game_state):
@@ -409,6 +423,13 @@ class MiniChess:
                 self.make_move(self.current_game_state, move, cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth=self.search_algorithm.state_by_depth)
                 
                 self.turn_count+=1 # add 1 to the number of turn_count
+                
+                if self.max_turns < (self.turn_count //2):
+                    self.display_board(self.current_game_state)
+                    self.logger.log_info("Maximum Turns exceeded. Game ends")
+                    print("Maximum Turns exceeded. Game ends.")
+                    break
+                
                 # Check for draw condition
                 if self.turn_count //2 ==10: 
                     if self.check_draw_condition(self.current_game_state):
@@ -472,6 +493,14 @@ class MiniChess:
                                state_by_depth=(self.search_algorithm_1.state_by_depth, self.search_algorithm_2.state_by_depth))
                 
                 self.turn_count+=1 # add 1 to the number of turn_count
+                
+                if self.max_turns < (self.turn_count //2):
+                    self.display_board(self.current_game_state)
+                    self.logger.log_info("Maximum Turns exceeded. Game ends")
+                    print("Maximum Turns exceeded. Game ends.")
+                    break
+                
+                
                 # Check for draw condition
                 if self.turn_count //2 ==10: 
                     if self.check_draw_condition(self.current_game_state):
