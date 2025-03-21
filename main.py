@@ -216,6 +216,11 @@ class MiniChess:
         piece = game_state["board"][start[0]][start[1]]
         game_state["board"][start[0]][start[1]] = '.'
         game_state["board"][end[0]][end[1]] = piece
+        
+        # Log Ai Stats
+        if cumulative_sum is not None and state_by_depth is not None:
+            if isinstance(cumulative_sum, int):
+                self.logger.log_ai_stats(cumulative_sum, state_by_depth)
 
         if piece in ["wp", "bp"]:
             promote_pawn(end, game_state)
@@ -224,34 +229,13 @@ class MiniChess:
             self.display_board(self.current_game_state)
             print("White Wins!")
             self.logger.log_winner("White")
-            
-            if cumulative_sum is not None and state_by_depth is not None: # Log AI stats at the end of the game
-                if isinstance(cumulative_sum, tuple) and isinstance(state_by_depth, tuple):
-                    self.logger.log_ai_stats(cumulative_sum[0], state_by_depth[0])    
-                    self.logger.log_ai_stats(cumulative_sum[1], state_by_depth[1])   
-                    
-                
-                if isinstance(cumulative_sum, int):
-                    self.logger.log_ai_stats(cumulative_sum, state_by_depth)
             exit(0)
-            
         elif not any("wK" in row for row in game_state["board"]):
             self.display_board(self.current_game_state)
             print("Black Wins!")
-            self.logger.log_winner("Black")
-            
-            if cumulative_sum is not None and state_by_depth is not None:
-                
-                if isinstance(cumulative_sum, tuple) and isinstance(state_by_depth, tuple):
-                    self.logger.log_ai_stats(cumulative_sum[0], state_by_depth[0])    
-                    self.logger.log_ai_stats(cumulative_sum[1], state_by_depth[1])   
-                    exit(0)
-                
-                if isinstance(cumulative_sum, int):
-                    self.logger.log_ai_stats(cumulative_sum, state_by_depth)
-                    exit(0)
+            self.logger.log_winner("Black") 
             exit(0)
-
+        
         game_state["turn"] = "black" if game_state["turn"] == "white" else "white"
 
     def ai_make_move(self, game_state, move):
@@ -361,7 +345,11 @@ class MiniChess:
                         self.logger.log_move(player="AI",move=move,ai_time= time_spent,
                                              mini_max_score=resulting_heuristic,
                                              heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
-                self.make_move(self.current_game_state, move , cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth= self.search_algorithm.state_by_depth)
+                
+                if self.current_game_state['turn'] =="white":
+                    self.make_move(self.current_game_state, move)    
+                elif self.current_game_state['turn'] =="black":
+                    self.make_move(self.current_game_state, move , cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth= self.search_algorithm.state_by_depth)
                 
                 self.turn_count+=1 # add 1 to the number of turn_count
                 
@@ -420,7 +408,12 @@ class MiniChess:
                         self.logger.log_move(player="AI",move=move,ai_time= time_spent,
                                              mini_max_score=resulting_heuristic,
                                              heuristic_score=self.search_algorithm.evaluation_score(current_state=self) ) # log AI move
-                self.make_move(self.current_game_state, move, cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth=self.search_algorithm.state_by_depth)
+                                        
+                if self.current_game_state['turn'] =="black":
+                    self.make_move(self.current_game_state, move)    
+                elif self.current_game_state['turn'] =="white":
+                    self.make_move(self.current_game_state, move , cumulative_sum=self.search_algorithm.cumulative_count, state_by_depth= self.search_algorithm.state_by_depth)
+                
                 
                 self.turn_count+=1 # add 1 to the number of turn_count
                 
@@ -488,10 +481,14 @@ class MiniChess:
                                              mini_max_score=heuristic_score2,
                                              heuristic_score=self.search_algorithm_2.evaluation_score(current_state=self) ) # log AI move
             
-                self.make_move(self.current_game_state, move, 
-                               cumulative_sum= (self.search_algorithm_1.cumulative_count, self.search_algorithm_2.cumulative_count),
-                               state_by_depth=(self.search_algorithm_1.state_by_depth, self.search_algorithm_2.state_by_depth))
+                if self.current_game_state['turn']=='white':
+                    self.make_move(self.current_game_state, move,
+                                   cumulative_sum=self.search_algorithm_1.cumulative_count, state_by_depth=self.search_algorithm_1.state_by_depth)
+                elif self.current_game_state['turn'] =='black':
+                    self.make_move(self.current_game_state, move, 
+                                   cumulative_sum=self.search_algorithm_2.cumulative_count, state_by_depth=self.search_algorithm_2.state_by_depth)
                 
+            
                 self.turn_count+=1 # add 1 to the number of turn_count
                 
                 if self.max_turns < (self.turn_count //2):

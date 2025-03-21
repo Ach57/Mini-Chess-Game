@@ -1,0 +1,131 @@
+Mini Chess Game Trace
+Alpha-Beta Pruning: OFF
+Timeout per move: 5 seconds
+Max turns: 10
+Player 1: AI (Alpha-Beta ON, Heuristic: e1)
+Player 2: AI (Alpha-Beta ON, Heuristic: e0)
+
+Initial Board Configuration:
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
+
+Turn #1: AI moves D1 to D2
+AI move time: 0.126 sec
+Heuristic Score: 0
+MiniMax Search Score: 5
+
+Cumulative AI Search Statistics:
+Cumulative States Explored: 2452
+Cumulative states explored by depth:
+Depth 1: 2452 states
+Depth 2: 170 states
+Depth 3: 13 states
+Cumulative % states explored by depth:
+Depth 1: 93.06%
+Depth 2: 6.45%
+Depth 3: 0.49%
+Average Branching Factor: 0.07
+
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp wQ .
+. wN wB . wK
+
+Turn #2: AI moves A5 to A4
+AI move time: 0.091 sec
+Heuristic Score: 0
+MiniMax Search Score: 0
+
+Cumulative AI Search Statistics:
+Cumulative States Explored: 2484
+Cumulative states explored by depth:
+Depth 1: 2484 states
+Depth 2: 175 states
+Depth 3: 13 states
+Cumulative % states explored by depth:
+Depth 1: 92.96%
+Depth 2: 6.55%
+Depth 3: 0.49%
+Average Branching Factor: 0.07
+
+. bQ bB bN .
+bK . bp bp .
+. . . . .
+. wp wp wQ .
+. wN wB . wK
+
+Turn #3: AI moves B2 to B3
+AI move time: 0.151 sec
+Heuristic Score: 0
+MiniMax Search Score: 8
+
+Cumulative AI Search Statistics:
+Cumulative States Explored: 5691
+Cumulative states explored by depth:
+Depth 1: 5691 states
+Depth 2: 378 states
+Depth 3: 27 states
+Cumulative % states explored by depth:
+Depth 1: 93.36%
+Depth 2: 6.20%
+Depth 3: 0.44%
+Average Branching Factor: 0.07
+
+. bQ bB bN .
+bK . bp bp .
+. wp . . .
+. . wp wQ .
+. wN wB . wK
+
+Turn #4: AI moves B5 to A5
+AI move time: 0.135 sec
+Heuristic Score: 0
+MiniMax Search Score: 0
+
+Cumulative AI Search Statistics:
+Cumulative States Explored: 6230
+Cumulative states explored by depth:
+Depth 1: 6230 states
+Depth 2: 421 states
+Depth 3: 28 states
+Cumulative % states explored by depth:
+Depth 1: 93.28%
+Depth 2: 6.30%
+Depth 3: 0.42%
+Average Branching Factor: 0.07
+
+bQ . bB bN .
+bK . bp bp .
+. wp . . .
+. . wp wQ .
+. wN wB . wK
+
+Turn #5: AI moves B3 to A4
+AI move time: 0.193 sec
+Heuristic Score: 0
+MiniMax Search Score: 1007
+
+Cumulative AI Search Statistics:
+Cumulative States Explored: 10610
+Cumulative states explored by depth:
+Depth 1: 10610 states
+Depth 2: 653 states
+Depth 3: 45 states
+Cumulative % states explored by depth:
+Depth 1: 93.83%
+Depth 2: 5.77%
+Depth 3: 0.40%
+Average Branching Factor: 0.06
+
+bQ . bB bN .
+wp . bp bp .
+. . . . .
+. . wp wQ .
+. wN wB . wK
+
+Game Over: White wins in 2 turns
+
