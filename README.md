@@ -39,20 +39,6 @@ cd Mini-Chess-Game
 ```bash
 python main.py
 ```
-## 📚 Example Interaction
- -------------------------------
-|       Mini Game Chess         |
-| 1. Player Vs Player           |
-| 2. Player Vs AI               |
-| 3. AI Vs Player               |
-| 4. AI Vs AI                   |
-| 5. Exit                       |
- -------------------------------
-Please enter a valid option: 2
-Max time (seconds): 10
-Max turns: 30
-Heuristic (e0, e1, e2): e1
-Enable Alpha-Beta? (yes/no): yes
 
 
 
